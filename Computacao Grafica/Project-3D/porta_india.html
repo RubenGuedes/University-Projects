@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>Porta da India</title>
+
+      <script type='text/javascript'          src='lib/x3dom-full.js'></script>
+      <link rel='stylesheet' type='text/css' href='lib/x3dom.css' />
+
+      <!-- Descrição -->
+		<div id = "Texto">
+			<center><h1>Porta da Índia</h1></center>
+			<p aling= "center"> "É um monumento nacional situado em Rajpath, o coração da cidade indiana de
+         Nova Deli. Homenageia os soldados mortos durante a Segunda Guerra Mundial e nas Guerras 
+         anglo-afegãs. Este arco do triunfo, chamado inicialmente Memorial de Todas as Guerras Indianas, 
+         foi construído pelo arquiteto Edwin Lutyens para lembrar os soldados indianos caídos
+          durante a Primeira Guerra Mundial e as Guerras Afegãs de 1919. Os nomes destes soldados, 
+          85 000 no total, estão inscritos nas paredes do monumento."
+           <br>Este texto foi retirado do site : <a href:"https://pt.wikipedia.org/wiki/Porta_da_%C3%8Dndia_(Nova_Deli)"> https://pt.wikipedia.org/wiki/Porta_da_%C3%8Dndia_(Nova_Deli)</a></p>
+		</div>
+
+      <!-- Imagem -->
+		  <img src="media/india_gate_2.jpg" width="480" height="600" > 
+
+    </head>
+
+    <body style="background-color:lightyellow;">
+      <!--Tamanho-->
+      <x3d
+        width  = "480px" 
+        height = "600px">
+    
+        <scene>        
+          <Background 
+            skyColor = '0.65 0.85 0.46'>
+          </Background>
+
+          <NavigationInfo 
+            headlight = 'false' >
+          </NavigationInfo>
+
+          <Viewpoint
+            position = '0 4  16'
+            orientation = '10 20 10' >
+          </Viewpoint>
+        
+          <PointLight 
+            radius= "17"
+            ambientIntensiy = "1"
+            location = '0,13, 4.5' 
+            shadowMapSize = "4"
+            shadowIntensity = "1"> <!-- ligar/desligar sombra -->
+          </PointLight>
+        
+          <!--_____________________________________________________________-->
+          <!--      PEÇAS ESSENCIAIS PARA A CONSTRUÇÃO DO MONUMENTO        -->
+          <!--_____________________________________________________________-->
+
+          <!-- Muro Frente Direito -->
+          <IndexedFaceSet
+            id = "pilar1"
+            coordIndex="
+               2  3  4  5  0  1  2 -1
+              11 10  9  8  7  6 11 -1
+               4  3  9 10  4       -1
+               3  2  8  9  3       -1
+               2  1  7  8  2       -1
+               1  0  6  7  1       -1
+               0  5 11  6  0       -1
+               5  4 10 11  5       -1
+            " 
+            texCoordIndex="
+               6  7  8  9 10 11  6 -1
+               6  7  8  9 10 11  6 -1
+               1  4  5  2  1       -1
+               0  1  2  3  0       -1
+               0  1  2  3  0       -1
+               1  4  5  2  1       -1
+               0  1  2  3  0       -1
+               0  1  2  3  0       -1
+                ">
+            <Coordinate
+                point="
+                0.40, 0.00, 0.10
+                0.50, 0.00, 0.10
+                0.50, 0.00, 0.50
+                0.20, 0.00, 0.50
+                0.20, 0.00, 0.40
+                0.40, 0.00, 0.40
+                0.40, 0.80, 0.10
+                0.50, 0.80, 0.10
+                0.50, 0.80, 0.50
+                0.20, 0.80, 0.50
+                0.20, 0.80, 0.40
+                0.40, 0.80, 0.40" >
+            </Coordinate>
+            <TextureCoordinate
+                point="
+                  0.0 0.0
+                  0.4 0.0
+                  0.4 0.8
+                  0.0 0.8
+                  0.5 0.0
+                  0.5 0.8
+                  1.0 0.0
+                  1.0 0.4
+                  0.7 0.4
+                  0.7 0.3
+                  0.9 0.3
+                  0.9 0.0">
+            </TextureCoordinate>
+          </IndexedFaceSet>
+        
+          <!-- Muro Frente Esquerdo -->
+          <IndexedFaceSet
+                id = "pilar2"
+                coordIndex="
+                2  3  4  5  0  1  2 -1
+               11 10  9  8  7  6 11 -1
+                0  6  7  1  0       -1
+                1  7  8  2  1       -1
+                2  8  9  3  2       -1
+                3  9 10  4  3       -1
+                4 10 11  5  4       -1
+                5 11  6  0  5       -1
+                " 
+                texCoordIndex="
+                 7  8  9 10 11  6  7 -1
+                 6  7  8  9 10 11  6 -1
+                 4  5  2  1  4     -1
+                 1  2  3  0  1     -1
+                 1  2  3  0  1     -1
+                 4  5  2  1  4     -1
+                 1  2  3  0  1     -1
+                 1  2  3  0  1     -1
+                   ">
+            <Coordinate
+                point="
+                  0.00, 0.00, 0.10
+                  0.10, 0.00, 0.10
+                  0.10, 0.00, 0.40
+                  0.30, 0.00, 0.40
+                  0.30, 0.00, 0.50
+                  0.00, 0.00, 0.50
+                  0.00, 0.80, 0.10
+                  0.10, 0.80, 0.10
+                  0.10, 0.80, 0.40
+                  0.30, 0.80, 0.40
+                  0.30, 0.80, 0.50
+                  0.00, 0.80, 0.50">
+            </Coordinate>
+            <TextureCoordinate
+                point="
+                  0.0 0.0
+                  0.4 0.0
+                  0.4 0.8
+                  0.0 0.8
+                  0.5 0.0
+                  0.5 0.8
+                  0.7 0.0 
+                  0.7 0.4 
+                  1.0 0.4
+                  1.0 0.3 
+                  0.8 0.3 
+                  0.8 0.0">
+            </TextureCoordinate>
+
+          </IndexedFaceSet>
+
+          <!-- Arco -->
+          <IndexedFaceSet
+                id = "arco1"
+
+                coordIndex="
+                  0  1  2  3  0 -1
+                  3  4  5  0  3 -1
+                  0  5 14 13 12 11 10  9  8  7  6  1  0 -1 
+                  3  2 15 16 17 18 19 20 21 22 23  4  3 -1
+                  5  4 23 14  5 -1
+                 14 23 22 13 14 -1
+                 13 22 21 12 13 -1
+                 12 21 20 11 12 -1
+                 11 20 19 10 11 -1
+                 10 19 18  9 10 -1
+                  9 18 17  8  9 -1
+                  8 17 16  7  8 -1
+                  7 16 15  6  7 -1
+                  6 15  2  1  6 -1
+                "
+
+                texCoordIndex="
+                  0  1  2  3  0  -1
+                  1  2  3  0  1  -1
+                  5  6  7  8  9 10 11 12 13 14 15  4  5 -1
+                  5  4 15 14 13 12 11 10  9  8  7  6  5 -1
+                 16 28 29 17 16 -1
+                 17 29 30 18 17 -1
+                 18 30 31 19 18 -1
+                 19 31 32 20 19 -1
+                 20 32 33 21 20 -1
+                 21 33 34 22 21 -1
+                 22 34 35 23 22 -1
+                 23 35 36 24 23 -1
+                 24 36 37 25 24 -1
+                 25 37 38 26 25 -1
+                ">
+                <Coordinate
+                    point="
+                    0.10, 0.1,         0.0
+                    0.00, 0.1,         0.0
+                    0.00, 0.1,         0.1
+                    0.10, 0.1,         0.1
+                    0.10, 0.0,         0.1
+                    0.10, 0.0,         0.0
+
+                    0.01, 0.099498744, 0.0
+                    0.02, 0.097979590, 0.0
+                    0.03, 0.095393920, 0.0
+                    0.04, 0.091651514, 0.0
+                    0.05, 0.086602540, 0.0
+                    0.06, 0.080000000, 0.0
+                    0.07, 0.071414284, 0.0
+                    0.08, 0.060000000, 0.0
+                    0.09, 0.043588989, 0.0
+
+                    0.01, 0.099498744, 0.1
+                    0.02, 0.097979590, 0.1
+                    0.03, 0.095393920, 0.1
+                    0.04, 0.091651514, 0.1
+                    0.05, 0.086602540, 0.1
+                    0.06, 0.080000000, 0.1
+                    0.07, 0.071414284, 0.1
+                    0.08, 0.060000000, 0.1
+                    0.09, 0.043588989, 0.1 ">
+                </Coordinate>
+                <TextureCoordinate
+                    point="
+                      0.90, 0.90
+                      0.90, 1.00
+                      1.00, 1.00
+                      1.00, 0.90
+
+                      0.00, 0.90
+                      0.10, 0.90
+                      0.10, 1.00
+
+                      0.09, 0.956411011
+                      0.08, 0.94
+                      0.07, 0.928585716
+                      0.06, 0.92
+                      0.05, 0.91339746
+                      0.04, 0.908348486
+                      0.03, 0.90460608
+                      0.02, 0.90202041
+                      0.01, 0.900501256
+
+                      0.000000000, 0.1
+                      0.090909091, 0.1 
+                      0.181818182, 0.1 
+                      0.272727273, 0.1 
+                      0.363636364, 0.1 
+                      0.454545455, 0.1 
+                      0.545454545, 0.1 
+                      0.636363636, 0.1 
+                      0.727272727, 0.1 
+                      0.818181818, 0.1
+                      0.909090909, 0.1
+                      1.0        , 0.1
+
+                      0.000000000, 0.0
+                      0.090909091, 0.0 
+                      0.181818182, 0.0 
+                      0.272727273, 0.0 
+                      0.363636364, 0.0 
+                      0.454545455, 0.0 
+                      0.545454545, 0.0 
+                      0.636363636, 0.0 
+                      0.727272727, 0.0 
+                      0.818181818, 0.0
+                      0.909090909, 0.0
+                      1.0        , 0.0
+                        " >
+                </TextureCoordinate>
+          </IndexedFaceSet>
+
+          <!-- Paralelepípedo para tapar/preencher o espaço nos lados do objecto -->
+          <IndexedFaceSet
+                id = "parede_auxiliar"
+                coordIndex="
+                  0 1 2 3 0 -1
+                  7 6 5 4 7 -1
+                  0 4 5 1 0 -1
+                  1 5 6 2 1 -1
+                  2 6 7 3 2 -1
+                  3 7 4 0 3 -1"
+                texCoordIndex="
+                  0 1 2 3 0 -1
+                  0 1 2 3 0 -1
+                  0 1 2 3 0 -1
+                  4 5 6 0 4 -1
+                  0 1 2 3 0 -1
+                  4 5 6 0 4 -1
+                "
+                >
+                <Coordinate
+                    point="[
+                      0.0 0.0 0.0
+                      0.1 0.0 0.0
+                      0.1 0.0 0.2
+                      0.0 0.0 0.2
+                      0.0 0.3 0.0
+                      0.1 0.3 0.0
+                      0.1 0.3 0.2
+                      0.0 0.3 0.2
+                      ]">
+                </Coordinate>
+                <TextureCoordinate
+                    point="
+                      0.0 0.0
+                      0.1 0.0
+                      0.1 0.2 
+                      0.0 0.2
+                      0.3 0.0
+                      0.3 0.292
+                      0.0 0.292">
+                </TextureCoordinate>
+          </IndexedFaceSet>
+
+          <!-- Teto -->
+          <IndexedFaceSet
+            id = "teto"
+            coordIndex="
+              0 1 2 3 0 -1
+              4 7 6 5 4 -1
+              0 4 5 1 0 -1
+              1 5 6 2 1 -1
+              2 6 7 3 2 -1
+              3 7 4 0 3 -1
+              "
+            texCoordIndex="
+             0 1 2 3 0 -1
+             0 1 2 3 0 -1
+             5 7 6 4 5 -1
+             5 7 6 4 5 -1
+             5 7 6 4 5 -1
+             5 7 6 4 5 -1
+             "
+            >
+            <Coordinate
+                    point="[
+                    0.0 0.0 0.0
+                    0.5 0.0 0.0
+                    0.5 0.0 0.5
+                    0.0 0.0 0.5
+                    0.0 0.1 0.0
+                    0.5 0.1 0.0
+                    0.5 0.1 0.5
+                    0.0 0.1 0.5
+                      ]">
+            </Coordinate>
+            <TextureCoordinate
+                point="
+                  0.0 0.0
+                  0.5 0.0
+                  0.5 0.5
+                  0.0 0.5
+
+                  0.0 0.0
+                  0.6 0.0
+                  0.0 0.15
+                  0.6 0.15">
+            </TextureCoordinate>
+
+          </IndexedFaceSet>
+          
+          <!-- Caixa 1-->
+          <Box
+            id = "atras_india"
+            size = "1,0.2,0.3">
+          </Box>
+          
+          <!-- Caixa 2 -->
+          <Box
+            id = "caixa_2"
+            size = "0.008 1.0, 0.01">
+          </Box>
+
+          <!-- Cilindro -->
+          <Cylinder 
+              id = "cilindro" 
+              height= "1" 
+              radius= "0.5" >
+          </Cylinder>
+
+          <!-- Texto India -->
+          <Text 
+            id ="texto" 
+            fontStyle = "Laksaman"
+            length = "1"
+            string = "India">
+            <FontStyle
+              family = "sans serif">
+            </FontStyle>
+          </Text>
+
+          <!--_____________________________________________________________-->
+          <!--                     CONSTRUÇÃO DA FIGURA                    -->
+          <!--_____________________________________________________________-->
+          <!-- Figura completa -->
+          <Group id = "objecto_completo">
+            
+            <!--____________________________-->
+            <!--   Pilar 1 (Lado direito)   -->
+            <!--____________________________-->
+            <transform
+                    scale = "7,7,7">  
+                <shape >
+                    <Appearance >
+                        <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                    </Appearance>
+                    <x3dgeometrynode use = "pilar1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--__________________________________-->
+            <!-- Simetria do pilar 1 nos eixos xy -->
+            <!--__________________________________-->
+            <transform
+                    scale = "-7,7,-7">  
+                <shape >
+                    <Appearance >
+                        <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                    </Appearance>
+                    <x3dgeometrynode use = "pilar1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--____________________________-->
+            <!--   Pilar 2 (Lado esquerdo)  -->
+            <!--____________________________-->
+            <transform
+                    scale = "7,7,7"
+                    translation = "-3.5 0 ">  
+                <shape >
+                    <Appearance >
+                        <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                    </Appearance>
+                    <x3dgeometrynode use = "pilar2"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--__________________________________-->
+            <!-- Simetria do pilar 2 nos eixos xy -->
+            <!--__________________________________-->
+            <transform
+                    scale = "-7,7,-7"
+                    translation = "3.5 0 0">  
+                <shape >
+                    <Appearance >
+                        <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                    </Appearance>
+                    <x3dgeometrynode use = "pilar2"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--_______________________-->
+            <!-- Arco 1 Frente Direito -->
+            <!--_______________________-->
+            <transform
+              scale = "14, 14, 7"
+              translation = "0, 4.2, 2.8">
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--________________________-->
+            <!-- Arco 1 Atrás Esquerdo -->
+            <!--________________________-->
+            <transform
+                id = "arco_tras_esquerdo"
+                scale = "14, 14, 7"
+                translation = "0, 4.2, -3.5"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--________________________-->
+            <!-- Arco 1 Frente Esquerdo -->
+            <!--________________________-->
+            <transform
+              scale = "14, 14, 7"
+              rotation = "0, 3.15, 0, 3.15"
+              translation = "0, 4.2, 3.5"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--_________________________________________________________-->
+            <!-- Simetria nos eixos xy do arco à frente do lado direito  -->
+            <!--_________________________________________________________-->
+            <transform
+              scale = "-14, 14, -7"
+              translation = "0, 4.2, -2.8"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+              
+            <!--________________________________-->
+            <!-- Arco Menor Lado Direito Frente -->
+            <!--________________________________-->
+            <transform
+                scale = "7, 7, 7"
+                rotation = "0,1.58,0,-1.58"
+                translation = "3.5, 2.8, 0"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--_______________________________-->
+            <!-- Arco Menor Lado Direito Atrás -->
+            <!--_______________________________-->
+            <transform
+                scale = "7, 7, 7"
+                rotation = "0,1.58,0,1.58"
+                translation = "2.8, 2.8, 0"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!-- Simetria do arco menorque está de lado à frente -->
+            <!--_________________________________________________-->
+            <transform
+                scale = "-7, 7, -7"
+                rotation = "0,1.58,0,-1.58"
+                translation = "-3.5, 2.8, 0"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--   Simetria arco menor que está de lado atrás    -->
+            <!--_________________________________________________-->
+            <transform
+                scale = "-7, 7, -7"
+                rotation = "0,-1.58,0,-1.58"
+                translation = "-2.8, 2.8, 0"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "arco1"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--______________________________________________________________-->
+            <!-- Parede complementar no lado direito (por cima do menor arco) -->
+            <!--______________________________________________________________-->
+            <transform
+                scale = "7,7,7"
+                translation = "2.8, 3.5, -0.7"> 
+                <shape>
+                  <Appearance >
+                      <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "parede_auxiliar"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+            <!--______________________________________________________________-->
+            <!-- Parede complementar no lado esquerdo (por cima do menor arco) -->
+            <!--______________________________________________________________-->
+            <transform
+              scale = "7,7,7"
+              translation = "-3.5, 3.5, -0.7"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "parede_auxiliar"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                     Teto 1                      -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "7,8.5,7"
+              translation = " 0.0, 5.6,0"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                     Teto 2                      -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "7,8.5,7"
+              translation = " 0.0, 5.6,-3.5"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                     Teto 3                      -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "7,8.5,7"
+              translation = "-3.5, 5.6,-3.5"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                     Teto 4                      -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "7,8.5,7"
+              translation = "-3.5, 5.6,0"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+            
+            <!--_________________________________________________-->
+            <!--                Por cima do Teto 1               -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "5,5,6"
+              translation = "0, 6.4, 0"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                Por cima do Teto 2               -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "5,5,6"
+              translation = "0, 6.4, -3"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                Por cima do Teto 3               -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "5,5,6"
+              translation = "-2.5, 6.4, -3"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                Por cima do Teto 4               -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "5,5,6"
+              translation = "-2.5, 6.4, 0"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                    Telhado 1                    -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "4.3, 10, 3"
+              translation = "0,6.8, 0.6"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                    Telhado 2                    -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "4.3, 10, 3"
+              translation = "0,6.8, -2.2"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                    Telhado 3                    -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "4.3, 10, 3"
+              translation = "-2.15 ,6.8, -2.2"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                    Telhado 4                    -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "4.3,10,3"
+              translation = "-2.15 ,6.8, 0.6"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--______________________________-->
+            <!-- Caixa 1 à frente do cilindro -->
+            <!--______________________________-->
+            <transform
+              scale = "5.5,10,2"
+              translation = "-1.4 ,7.4, 1"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--___________________________-->
+            <!-- Caixa 1 atras do cilindro -->
+            <!--___________________________-->
+            <transform
+              scale = "5.5,10,2"
+              translation = "-1.4 ,7.4, -1.9"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "teto"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--          Cilindro em cima do telhado            -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "2.5, 1.5, 2.5"
+              translation = "0 ,8.2, 0"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--        Cilindro 1 direito na parede da frente   -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "1, 0.3, 1"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "2.5 , 5.4, 3.4"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--    Subcilindro 1 direito na parede da frente    -->
+            <!--_________________________________________________-->
+            <transform
+              scale = "0.7, 0.5, 0.7"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "2.5 , 5.4, 3.4"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro" ></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--____________________________________________________________-->
+            <!--   Cilindro 2 esquerdo na parede da frente ao pé do arco    -->
+            <!--____________________________________________________________-->
+            <transform
+              scale = "1, 0.3, 1"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "-2.5 , 5.4, 3.4"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_______________________________________________________________-->
+            <!--   Subcilindro 2 esquerdo na parede da frente ao pé do arco    -->
+            <!--_______________________________________________________________-->
+            <transform
+              scale = "0.7, 0.5, 0.7"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "-2.5 , 5.4, 3.4"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro" ></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--____________________________________________________________-->
+            <!--          Cilindro 3 lado esquerdo do nome "India"          -->
+            <!--____________________________________________________________-->
+            <transform
+              scale = "0.7, 0.3, 0.7"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "-1.3 , 7.3, 2"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--____________________________________________________________-->
+            <!--          Cilindro 3 lado direito do nome "India"          -->
+            <!--____________________________________________________________-->
+            <transform
+              scale = "0.7, 0.3, 0.7"
+              rotation = "1.57,  0 , 0, 1.57"
+              translation = "1.3 , 7.3, 2"> 
+              <shape>
+                <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "cilindro"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--_________________________________________________-->
+            <!--                  Texto India                    -->
+            <!--_________________________________________________-->            
+            <transform
+              scale = "1, 0.7, 1"
+              translation = "0 , 7.3, 2.111"> 
+              <shape>
+                <Appearance >
+                    <twosidedmaterial diffuseColor = "beige"></twosidedmaterial>
+                </Appearance>
+                <x3dgeometrynode use= "texto"></x3dgeometrynode>
+              </shape>
+            </transform>
+            
+            <!--_________________________________________________-->
+            <!--               Caixa atras do texto              -->
+            <!--_________________________________________________-->            
+            <transform
+              scale = "1.3, 3, 2"
+              translation = "0 , 7.4, 1.81"> 
+              <shape>
+                <Appearance >
+                  <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                </Appearance>
+                <x3dgeometrynode use= "atras_india"></x3dgeometrynode>
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!--Estrutura que envolva os pilares(por baixo dos cilindros lado direito)-->
+            <!--______________________________________________________________________-->
+            <transform
+              id = "envolver">
+
+              <!-- estrutura 1 -->
+              <transform
+                scale = "2.5, 0.5, 5.5"
+                translation = "2.45 , 3.8, 2.9"> 
+                <shape>
+                  <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "atras_india"></x3dgeometrynode>
+                </shape>
+              </transform>
+ 
+              <!-- estrutura 2 -->
+              <transform
+                scale = "2.3, 0.3, 5"
+                translation = "2.45 , 3.72, 2.9"> 
+                <shape>
+                  <Appearance >
+                    <ImageTexture url="media/parede_amarela_menor.jpg"></ImageTexture>
+                  </Appearance>
+                  <x3dgeometrynode use= "atras_india"></x3dgeometrynode>
+                </shape>
+              </transform>
+                
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              translation = "-4.9, 0, 0">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "1.85, 0, -1.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "1.85, 0, -3">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "1.85, 0, -4.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              translation = "0, 0, -5.8">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "-4.3, 0, -1.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "-4.3, 0, -3">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "-4.3, 0, -4.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--______________________________________________________________________-->
+            <transform
+              translation = "-4.9, 0, -5.85">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--______________________________________________________________________-->
+            <transform
+              translation = "0, -1.5, 0">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              translation = "-4.9, -1.5, 0">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "-4.3, -1.5, -1.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--______________________________________________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "1.85, -1.5, -1.5">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--__________________________Pilar de trás_______________________________-->
+            <transform
+              scale = "1, 1, 0.9"
+              translation = "0, -1.5, -5.6">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--_______________________ Pilar de trás_________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "1.85, -1.5, -4.3">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado direito) -->
+            <!--__________________________Pilar de trás_______________________________-->
+            <transform
+              scale = "1, 1, 0.9"
+              translation = "-4.89, -1.5, -5.6">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!--______________________________________________________________________-->
+            <!-- Estrutura que envolva o pilar (por baixo dos cilindros lado esquerdo)-->
+            <!--_______________________ Pilar de trás_________________________________-->
+            <transform
+              scale = "0.5, 1, 1"
+              translation = "-4.3, -1.5, -4.3">
+              <shape use = "envolver">
+              </shape>
+            </transform>
+
+            <!-- Quadrilatero 1 -->
+            <transform
+              id = "desenho_retangular"
+              scale = "1, 0.6, 0.5"
+              translation="2.4,3, 3.5"> 
+
+              <!--Paralelipipedo 1-->
+              <transform
+                translation="-0.50, 0, 0">
+                <shape>
+                  <appearance>
+                    <twosidedmaterial
+                       diffuseColor = "yellow"
+                       specularColor = "1,1,1" 
+                       emissiceColor = "1,1,1" 
+                       backDiffuseColor = "yellow"
+                       backEmissiveColor = "1,1,1"
+                       backSpecularColor = "1,1,1"
+                       backShininess = "1"> 
+                  </twosidedmaterial>
+                  </appearance>
+                  <x3dgeometrynode use= "caixa_2"></x3dgeometrynode>
+                </shape>
+              </transform>
+
+              <!--Paralelipipedo 2-->
+              <transform
+                translation = "0, -0.50, 0"
+                rotation="0, 0, 1.565, 1.565">
+                <shape>
+                  <appearance>
+                    <twosidedmaterial
+                      diffuseColor = "yellow"
+                      specularColor = "1,1,1" 
+                      emissiceColor = "1,1,1" 
+                      backDiffuseColor = "yellow"
+                      backEmissiveColor = "1,1,1"
+                      backSpecularColor = "1,1,1"
+                      backShininess = "1" >
+                  </twosidedmaterial>
+                  </appearance>
+                  <x3dgeometrynode use= "caixa_2"></x3dgeometrynode>
+                </shape>
+              </transform>
+
+              <!--Paralelipipedo 3-->
+              <transform
+                translation="0.497, 0, 0">
+                <shape>
+                  <appearance>
+                    <twosidedmaterial
+                       diffuseColor = "yellow"
+                       specularColor = "1,1,1" 
+                       emissiceColor = "1,1,1" 
+                       backDiffuseColor = "yellow"
+                       backEmissiveColor = "1,1,1"
+                       backSpecularColor = "1,1,1"
+                       backShininess = "1">
+                  </twosidedmaterial>
+                  </appearance>
+                  <x3dgeometrynode use= "caixa_2"></x3dgeometrynode>
+                </shape>
+              </transform>
+
+              <!--Paralelipipedo 4-->
+              <transform
+                translation = "0, 0.50, 0"
+                rotation="0, 0, 1.57, 1.57">
+                <shape>
+                  <appearance>
+                    <twosidedmaterial
+                       diffuseColor = "yellow"
+                       specularColor = "1,1,1" 
+                       emissiceColor = "1,1,1" 
+                       backDiffuseColor = "yellow"
+                       backEmissiveColor = "1,1,1"
+                       backSpecularColor = "1,1,1"
+                       backShininess = "1" >
+                  </twosidedmaterial>
+                  </appearance>
+                  <x3dgeometrynode use= "caixa_2"></x3dgeometrynode>
+                </shape>
+              </transform>
+            </transform>
+
+            <!-- Quadrilatero 2 -->
+            <transform
+              translation = "-4.85,0,0">
+              <shape use = "desenho_retangular"></shape>
+            </transform>
+
+            <!-- Quadrilatero 3 -->
+            <transform
+              scale = "-1,1,-1">
+              <shape use = "desenho_retangular"></shape>
+            </transform>
+
+            <!-- Quadrilatero 4 -->
+            <transform
+              scale = "-1, 1, -1"
+              translation = "4.85,0,0">
+              <shape use = "desenho_retangular"></shape>
+            </transform>
+
+            <!-- Quadrilatero 5 -->
+            <transform
+              id = "quad_lado"
+              scale = "0.7,1,1"
+              rotation ="0,1.57,0,1.57"
+              translation = "0,0,3.7">
+              <shape use = "desenho_retangular"></shape>
+            </transform>
+
+            <!-- Quadrilatero 6 -->
+            <transform
+              scale = "-1,1,-1">
+              <shape use = "quad_lado"></shape>
+            </transform>
+
+            <!-- Quadrilatero 7 -->
+            <transform
+              scale = "-1,1,1">
+              <shape use = "quad_lado"></shape>
+            </transform>
+
+            <!-- Quadrilatero 8 -->
+            <transform
+              scale = "1,1,-1">
+              <shape use = "quad_lado"></shape>
+            </transform>
+
+            <!-- Quadrilatero 9 -->
+            <transform
+              id = "quad_lado_maior"
+              scale = "1,3,8"
+              translation = "0,-3.7,-16.2">
+              <shape use = "quad_lado"></shape>
+            </transform>
+
+            <!-- Quadrilatero 10 -->
+            <transform
+              scale = "-1,1,1">
+              <shape use = "quad_lado_maior"></shape>
+            </transform>
+
+          </Group>
+      
+        </scene>
+      </x3d>
+    </body>
+</html>

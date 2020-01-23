@@ -1,0 +1,5 @@
+{'unknown': 2, 'on': 7, 'off': 4, 'broken': 7}
+{'off': 5, 'on': 22, 'unknown': 6, 'broken': 7}
+{'off': 8, 'on': 32, 'unknown': 9, 'broken': 11}
+{'on': 50, 'off': 12, 'broken': 9, 'unknown': 9}
+{'unknown': 13, 'on': 56, 'off': 13, 'broken': 18}

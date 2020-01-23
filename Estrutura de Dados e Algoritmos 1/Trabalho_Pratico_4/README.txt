@@ -1,0 +1,1 @@
+O texto esta num ficheiro à parte.
