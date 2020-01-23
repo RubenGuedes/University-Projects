@@ -1,0 +1,2 @@
+CREATE INDEX acidente_index ON 'Acidente' (object_id, local_acidente, longitude, latitude, hora_especifica_acidente);
+CREATE INDEX ciclista_index ON 'Ciclista' (Cartao_Cidadão_Ciclista, Nome, Idade, Ferimentos, Genero_ciclista);
