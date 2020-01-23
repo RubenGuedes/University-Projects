@@ -1,0 +1,32 @@
+﻿Relatório
+Server.py
+No ficheiro server.py, como o seu nome indica, é onde foi feito o servidor que vai responder às necessidades do cliente.
+Neste ficheiro foram feitas 10 funções:
+•	def main() -> função que lê o conteúdo do ficheiro names.txt proveniente da função readFile_Dict() e coloca o seu conteúdo numa variável, de seguida cria um socket do qual o irá ativar para que fique visível ao cliente, adicionando-o à lista de sockets. Após adicionar o socket, este entra num ciclo While no qual irá apagar todos os sockets que já não estão a ser usados da lista de sockets. Os sockets que ainda estão ativos, estão à espera de receber informação por parte do cliente, se houver informação, então a função irá percorrer todos os sockets ativos e estabelece uma nova ligação. Se em houver algum socket que esteja ligado ao cliente, então lê-se o pedido do cliente e retorna a resposta. Caso o socket ou o cliente feche, este é desconectado do servidor.
+•	def readFile_Dict() -> esta função recebe o nome do ficheiro com o conteúdo e lê o que lá está, e converte num dicionário, retornando o mesmo.
+•	def writeDict_File() -> esta função recebe como argumentos um dicionário e o nome do ficheiro, de modo a escrever no ficheiro o conteúdo que provem do dicionário, de modo a não perder a informação quando o servidor for desligado.
+•	def clienteHasNumber() -> esta função o que faz é receber do cliente o nome ( getphone “nome”), e retornar, caso exista, todos os números, senão retorna “A expressão “nome” não encontrada”
+•	def numberSet() -> recebe do cliente o nome e o número que quer adicionar à sua lista de contactos ( lista neste caso é dicionário), caso o nome não esteja no dicionário então este adiciona o nome e número, caso já lá esteja o nome, este apenas adiciona o número (getphone -set “nome” “número”).
+•	def deleted2() -> recebe do cliente o nome e verifica se o nome consta no dicionário, se sim, então apaga todos os contactos e o próprio nome do dicionário, senão retorna “A expressão “nome” não encontrada”. Corresponde ao comando getphone -del “nome”.
+•	def deleted3() -> esta função recebe o nome e o número e apenas elimina o número que consta no dicionário, caso haja apenas um número então elimina tudo (nome e número), senão apenas elimina um número. Caso este comando seja executado e o nome não faça parte do conteúdo do dicionário, então retorna “A expressão “nome” não encontrada”. Corresponde ao comando getphone -del “nome” “número”.
+•	def clienteHasNames -> esta função recebe apena o número e retorna todos os nomes que estejam associados a esse número, caso contrario retorna “A expressão “número” não encontrada”
+•	def notFound() -> esta função apenas retorna “A expressão “nome/number” não encontrada”, caso os comandos executados não constem no dicionário.
+•	def função_auxiliar() -> recebe uma string com os comandos executados pelo cliente e converte-o em um array de strings, de seguida verifica na primeira posição do array qual é o comando a executar. Caso o comando não exista em retorna “Comando não encontrado”
+  
+No ficheiro cliente.py é onde foi feito o código fonte do cliente.
+Neste ficheiro foram feitas 9 funções:
+
+•	def main() ->esta função tem por objectivo conectar ao servidor através de sockets, no qual é necessário ligar na porta 5000 e no mesmo endereço de IP do servidor. Caso o input seja vazio, então o cliente é desconectado do servidor.
+•	def arranjarInput()-> esta função recebe o input proveniente da função main(), e o que vai fazer é separar o input em uma lista de strings, exemplo, input -> getphone -set nome número , então teríamos [“getphone”,”-set”,”nome”,”número”]. Retornando a lista.
+•	def getNumber()-> recebe o comando e o nome a executar pelo servidor, como resposta ao pedido do cliente. Equivalente ao comando getphone “nome”. Enviando para o servidor e retornando a resposta ao que foi feito pelo cliente.
+•	def setNumber()-> função que recebe o comando a executar pelo servidor, o nome e o número, equivale ao comando getphone -set “nome” “número”. Enviando para o servidor e retornando a resposta ao que foi feito pelo cliente.
+•	def deleteNumber()-> recebe o comando a executar pelo servidor, o nome e o número. É equivalente ao comando getphone -del “nome” “número”. Enviando para o servidor e retornando a resposta ao que foi feito pelo cliente.
+•	def deleteClient()-> recebe o comando a executar pelo servidor e o nome. É equivalente ao comando getphone -del “nome”. Enviando para o servidor e retornando a resposta ao que foi feito pelo cliente.
+•	def reverse()-> é o mesmo que a função getNumber() só que em vez de receber o nome, recebe o número e retorna todas as pessoas que têm esse número.
+•	def intermediário()-> converte através da função arranjarInput() o comando que o cliente deu de input. De seguida vai comparar qual deles é o comando que deve ser enviado para o servidor, posto isto, chama a função take_action() que converte o comando em um número que quando lido pelo servidor sabe qual comando executar.
+•	def take_action()-> função que converte o comando dado de input pelo cliente, num comando que quando lido pelo servidor sabe que comando o cliente está a pedir.
+
+O ficheiro login.py, como o seu nome indica é o código fonte do login, porém não está acabado, faltava adaptar as funções delete do utilizador e implemetar no servidor/cliente, porém a sua implementação está a funcionar no ficheiro login.py
+Os ficheiros names.txt e names1.txt têm que ser criados à parte uma vez que o programa não os consegue criar.
+Cada vez que existe alguma alteração no dicionário, está é escrita no ficheiro. A encriptação está feita através dos métodos de encripta() e desencripta(), quando enviado do cliente->servidor e servidor->cliente. Ambos os metodos recebem uma string com o conteudo e uma chave.
+
