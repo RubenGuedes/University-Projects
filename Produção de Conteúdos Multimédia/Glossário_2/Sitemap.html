@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8" />
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- STYLE -->
+        <style>
+            .lt, .gt
+            {
+                font-family:Georgia, 'Times New Roman', Times, serif;
+            }
+            p
+            {
+                margin-top: 0em;
+                margin-bottom: 0em;
+                text-indent: 1em;
+                line-height: 1.5;
+                font-size: 19px;
+                text-align: justify;
+            }
+            h1 
+            {
+                text-align: center;
+                font-size:32px;
+            }
+            h2 
+            {
+                font-size: 22px;
+                text-align: left;
+            }
+            p.image
+            {
+                widows: 100%;
+                margin-top: 1em;
+                margin-bottom: 0.5em;
+                text-indent: 0;
+                text-align: center;
+                font-style: italic;
+                font-size:medium;
+            }
+            ul
+            {
+                text-indent: 0.5em;
+                line-height: 1.6;
+                font-size: 19px;
+                text-align: justify;
+            }
+            ul.list
+            {
+                margin-left: 1em;
+                line-height: 1.6;
+                text-align: justify;
+            }
+        </style>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+    </head>
+    <body>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- TITULO -->
+        <section>
+            <h1>Sitemap.xml</h1>
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- SECTION BEFORE IMAGE -->
+        <section>
+            <p>
+                Um bom Sitemap XML age como um roteiro para a página criada, e leva o Google ou outro motores de busca
+                a encontrar as páginas mais importantes do site (<a href="https://www.sitemaps.org/protocol.html">Hendriks</a>, 2018).
+            </p>
+            <p>
+                Um ficheiro sitemap.xml, em que XML significa "Extensible Markup Language", é um tipo de ficheiro cujo propósito é especificar as ligações de uma página web, 
+                vide <a href="https://www.sitemaps.org/protocol.html">Figura 1</a>.
+            </p>
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- IMAGEM -->
+        <section>
+            <p class="image">
+                <img src="sitemapXML.PNG" alt="SitemapXML">
+            </p>
+            <p class="image">
+                Figura 1: Exemplo de um ficheiro sitemap.xml. Fonte: <a href="https://www.sitemaps.org/protocol.html">Sitemaps</a> (2018).
+            </p>
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- SECTION AFTER IMAGE -->
+        <section>
+            <!-- ADICIONAR MAIS CONTEÚDO -->
+            <p>
+                A Figura 1 é constituido por:
+                <ul class="list">
+                    <li>&ltxml&gt: tag que identifica o tipo de ficheiro, qual a versão e a respetiva codificação</li>
+                    <li>&lturlset&gt: indica o início e fim do conjunto de ligações a serem identificadas</li>
+                    <li>&lturl&gt: indica o início e fim de uma única ligação</li>
+                    <li>&ltloc&gt: localização da ligação completa</li>
+                    <li>&ltlastmod&gt: é uma tag opcional na qual é escrita a data da última modificação</li>
+                    <li>&ltchangefreq&gt: é uma tag opcional que indica a frequência com que o robô deve executar a procura pela respetiva ligação</li>
+                    <li>&ltpriority&gt: é uma tag opcional que informa a prioridade da ligação especificada em relação às demais legações contidas no ficheiro</li>
+                </ul>
+            </p>
+            <p>
+                A Figura 1 apenas contém apenas uma ligação, contudo, este ficheiro poderia conter mais que uma ligação desde que,
+                cada uma destas, estivessem, tal como foi dito anteriormente, entre as tags "&lturl&gt" e "&lt/url&gt".
+            </p>
+            <p>
+                Esta ferramenta não é cem por cento fiável e, por isso, pode haver páginas que não sejam encontradas. Mas, mesmo assim, existe a
+                possibilidade de pelo menos uma página ser descoberta e, a partir desta, haver ligações para outras páginas. 
+                Este tipo de ficheiro também é muito útil para informar aos motores de busca se uma página foi adicionada ou removida.
+            </p>
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- REFERENCIAS -->
+        <section>
+            <h2>
+                Referências:
+            </h2>
+            <ul>
+                <li>Hendriks, M. (2018). What is an XML sitemap and why should you have one?
+                    <ul style="list-style-type:circle">
+                        <li>
+                            <a href="https://yoast.com/what-is-an-xml-sitemap-and-why-should-you-have-one/">https://yoast.com/what-is-an-xml-sitemap-and-why-should-you-have-one/</a> [Acedido: 8 de Dezembro de 2018]
+                        </li>
+                    </ul>
+                </li>
+                <li>Sitemaps (2018). Sitemaps XML format
+                    <ul style="list-style-type:circle">
+                        <li>
+                            <a href="https://www.sitemaps.org/protocol.html">https://www.sitemaps.org/protocol.html</a> [Acedido: 7 de Dezembro de 2018]
+                        </li>
+                    </ul>
+                </li>
+            </ul> 
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- LINKS -->
+        <section>
+            <h2> 
+                Links:
+            </h2>
+            <ul>
+                <li><a href="https://moz.com/blog/xml-sitemaps">MOZ</a></li>
+                <li><a href="https://wordpress.org/plugins/google-sitemap-generator/">WordPress</a></li>
+                <li><a href="https://www.seomarketing.com.br/sitemap.xml.php">SEO Marketing</a></li>
+            </ul>
+        </section>
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------->
+    </body>
+</html>

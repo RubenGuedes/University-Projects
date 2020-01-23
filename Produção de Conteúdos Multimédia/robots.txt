@@ -1,0 +1,16 @@
+# User-agent = Esta função tem como objetivo listar quais os robôs devem seguir as regras
+# 		indicadas neste ficheiro.
+User-agent: googlebot
+# Disallow = Esta instrução indica ao site de busca sobre quais diretórios ou páginas
+#		não devem ser incluidas no indice
+Disallow: site.eu/esparguete/
+Disallow: site.eu/arroz/
+# Allow = Este comando orienta os robos qual diretório ou página dever ter o conteudo indexado
+#  		Dirétórios e páginas são por definição sempre permitidas. Assim, este comando dever ser
+#  		utilizado apenas em situações em que o webmaster bloqueou o acesso a um diretório por meio
+#  		de um comando "Disallow" mas gostaria de ter indexado um arquivo ou sub-diretorio dentro do
+#  		diretório bloqueado.
+Allow: site.eu/arroz/agulha
+
+User-agent: botalentejano
+Disallow: apaixaodopeixe.org/
