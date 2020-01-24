@@ -1,0 +1,359 @@
+.data
+
+file1: .asciiz "lena.rgb"                  # Ficheiro da imagem em formato RGB
+file2: .asciiz "lena.gray"                     # Ficheiro da imagem em formato GRAY
+bufferRGB:         .word # Espaco para escrever o conteudo da imagem em rgb
+bufferGRAY:      .word  # Espaco para escrever o conteudo da imagem em gray
+
+.text
+main:
+	
+open_rgb_image:
+	la $a0, file1   
+	li $a1, 0       
+	li $a2, 0       
+	li $v0, 13     
+	syscall
+	move $s6, $v0    
+
+read_rgb_image:             
+	move $a0, $s6         
+	la $a1, bufferRGB     
+	li $a2, 786432          
+	li $v0, 14                 
+	syscall
+	
+close_rgb_image:
+	li $v0, 16    
+	syscall
+# No entanto o conteudo do RGB fica guardado em memoria
+	la $a0, bufferRGB
+	la $a1, bufferGRAY
+	jal rgb_to_gray  # Chama a funcao para converter o ficheiro rgb em gray
+	nop
+
+# Para a funcao que converte a imagem em gray
+open_gray_image:
+	la $a0, file2          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+write_gray_image: 
+	move $a0 ,$s6
+	la $a1, bufferGRAY
+	li $a2, 262144
+	li $v0, 15
+	syscall
+
+close_gray:
+	li $v0, 16 
+	syscall
+	
+open_Gray_image:
+	la $a0, file2
+	li $a1, 0
+	li $a2, 0
+	li $v0, 13
+	syscall
+	move $s6, $v0
+
+read_Gray_image:
+	move $a0, $s6
+	la $a1, bufferGray
+	li $a2, 262144
+	li $v0, 14
+	syscall
+
+close_Gray_image:
+	li $v0, 16
+	syscall
+	
+	la $a0, bufferGray
+	lb $a1, Sobel_hori
+	la $a2, bufferSobelHori
+	jal convolution
+	nop
+	
+open_convolution_image:
+	la $a0, file3
+	li $a1, 1
+	li $a2, 0
+	li $v0, 13
+	syscall
+	move $s6, $v0
+
+write_convolution_image:
+	move $a0, $s6
+	la $a1, bufferSobelHori
+	li $a2, 262144
+	li $v0, 15
+	syscall
+
+close_convolution:
+	li $v0, 16
+	syscall
+
+open_convolution_image:
+	la $a0, file2   
+	li $a1, 0       
+	li $a2, 0       
+	li $v0, 13     
+	syscall
+	move $s6, $v0    
+
+read_convolution_image:             
+	move $a0, $s6         
+	la $a1, bufferGRAY     
+	li $a2, 262144          
+	li $v0, 14                 
+	syscall
+	
+close_convolution_image:
+	li $v0, 16    
+	syscall
+
+contour:
+	la $a0, bufferSobelHori
+	la $a1, bufferSobelVert
+	la $a2, bufferFinalImage
+	
+	jal contour  
+	nop
+
+open_contour_image:
+	la $a0, file5          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+write_contour_image: 
+	move $a0 ,$s6
+	la $a1, 1
+	li $a2, 262144 
+	li $v0, 15
+	syscall
+
+close_contour:
+	li $v0, 16
+	syscall
+
+	j end
+	nop
+#########################         FUNCAO        ################################
+
+############################################
+#  rgb_to_gray - converte buffer rgb para buffer gray
+#  a0 - buffer rgb
+#  a1 - buffer gray
+#  a2 - comprimento (pixeis)
+#  retorna nada
+############################################
+rgb_to_gray:
+	li $a2, 0
+	addi $sp, $sp, -4
+	sw $ra, 0($sp) 
+
+RepeteGray:
+
+	lbu $t0, 0($a0)  # Para a cor vermelha
+	mul $t0, $t0, 30
+	
+	addi $a0, $a0, 1
+	
+	lbu $t1, 0($a0)  # Para a cor verde
+	mul $t1, $t1, 59
+	
+	addi $a0, $a0, 1
+	
+	lbu $t2, 0($a0)  # Para a cor azul
+	mul $t2, $t2, 11
+	
+	add $t0, $t0, $t1
+	add $t0, $t0, $t2
+
+	div $t3, $t0, 100
+	
+	sb $t3, 0($a1)  #Guardar pixeis em gray
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	addi $a2, $a2, 1
+	bne $a2, 262144, RepeteGray
+	nop
+	
+Fim_rgb_to_gray
+	lw $ra, 0($sp) 
+	addi $sp, $sp, 4
+	jr $ra
+	nop
+	
+########################################
+#  convolution - Vai colocar contornos na imagem
+#  a0 - buffer com a matriz imagem em Gray
+#  a1 - buffer com operador Sobel Horizontal
+#  a2 - buffer com a imagem do operador Horizontal
+#  retorna nada
+########################################
+convolution:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp) 
+
+	
+	li $t9, 0 # contador
+	
+	#problema: arranjar registo suficientes para guardar a operacao entre a matriz sobel e a matriz imagem
+Sobel_Horizontal: 
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1) #Matriz sobel
+
+	mul $t2, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t3, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t4, $t0, $t1
+	
+	add $t5, $t2, $t3
+	add $t5, $t5, $t4
+	
+	#avanca a matriz imagem para a proxima linha
+	addi $a0, $a0, 510
+	addi $a1, $a1, 1
+	
+	#continuar a operacao para a segunda linha da matriz imagem
+	lbu $t0, -513($a0) # um byte da imagem gray e guardada nop registo $t0
+	lb $t1, 0($a1) #Matriz sobel
+
+	mul $t2, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t3, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t4, $t0, $t1
+	
+	add $t6, $t2, $t3
+	add $t6, $t6, $s4
+	
+	#avanca a matriz imagem para a proxima linha (3 linha)
+	addi $a0, $a0, 510
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0) # um byte da imagem gray e guardada nop registo $t0
+	lb $t1, 0($a1) #Matriz sobel
+
+	mul $t2, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t3, $t0, $t1
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	lbu $t0, -513($a0)
+	lb $t1, 0($a1)
+	
+	mul $t4, $t0, $t1
+	
+	add $t7, $t2, $t3
+	add $t7, $t7, $t4
+	
+	add $t8, $t7, $t6
+	add $t8, $t8, $t5
+	
+	abs $t8, $t8
+	div $t8, $t8, 4
+	sb $t8, 0($a2)
+	
+	addi $a0, $a0, -513# retrocedo um byte da linha para aplicar a matriz sobel novamente 
+	addi $a1, $a1, -8    # retrocedo a matriz sobel Hozizontal para poder aplica-lo novamente
+	addi $a2, $a2, 1   # Avanco um byte no buffer que iremos guardar os bytes
+
+	bne $t9, 260100, Sobel_Horizontal
+	addi, $t9, $t9, 1
+	
+
+fim_contour:
+	lw $ra, 0($sp) 
+	addi $sp, $sp, 4
+	jr $ra
+	nop
+
+######################################################
+# contour - calcula a imagem final combinando as duas imagens filtradas
+#  a0 - buffer com o Sobel Horizontal
+#  a1 - buffer com o Sobel Vertical
+#  a2 - Imagem Final
+# retorna - Imagem final
+###############################################################
+main_contour:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	li $t9, 4
+	li $t8, 255
+	li $t7, 2
+	li $t0, 0
+
+Ciclo_contour:
+	lbu $t1, 0($a0) #Buffer Sobel Horizontal
+	lbu $t2, 0($a1) #Buffer Sobel Vertical
+	
+	div $t3, $t1, $t9 #divide por 4
+	div $t4, $t2, $t9 #divide por 9
+	
+	or $t5, $t3, $t4
+	
+	div $t6, $t5, $t7 #divide 2
+	
+	sub $s0, $t8, $t6 #subtrai por 255
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	sb $s0, 0($a2) 
+	bne $t0, 262144, Ciclo_contour
+	addi $t0, $t0, 1	
+
+FimCont: 
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
+	jr $ra
+	nop
+
+
+end:
+
+	
+
