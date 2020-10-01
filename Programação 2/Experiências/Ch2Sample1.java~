@@ -1,0 +1,10 @@
+import javax.swing.*;
+class Ch2Sample1 {
+  public static void main(String[] args) {
+  JFrame   myWindow; // object declaration
+  myWindow = new JFrame(); // object creation
+  myWindow.setSize(2200,1300); // setSIze (method object), não espero resposta
+  myWindow.setTitle("My First Program in Java"); // setTitle (method object)
+  myWindow.setVisible(true);
+  }
+}

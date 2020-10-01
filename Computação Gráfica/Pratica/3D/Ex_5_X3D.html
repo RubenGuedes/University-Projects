@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Exercicio 5 em X3D</title>
+    <script type="text/javascript" src="../../pub/lib/x3dom-full.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../pub/lib/x3dom.css" />
+</head>
+<x3d width = "500px" height = "500px">
+    <body>
+        <Scene>
+            <Shape solid = "true">
+                <Appearance >
+                    <ImageTexture url="parede-tijolo.jpg"></ImageTexture>
+                </Appearance>
+                <IndexedFaceSet
+                    coordIndex="
+                        0 3 2 1 -1
+                        0 1 4   -1
+                        1 2 4   -1
+                        2 3 4   -1
+                        3 0 4   -1
+                        " 
+                    texCoordIndex="
+                        0 3 2 1  -1
+                        2 3 8 -1
+                        2 8 7 -1
+                        7 8 13 -1
+                        7 12 13 -1
+                        ">
+                    <Coordinate
+                        point="
+                         0.0,  1.5,  0.0
+                        -0.7,  1.0,  0.7
+                         0.7,  1.0,  0.7
+                         0.7,  1.0, -0.7
+                        -0.7,  1.0, -0.7
+                        -1.0,  0.0,  1.0
+                         1.0,  0.0,  1.0
+                         1.0,  0.0, -1.0
+                        -1.0,  0.0, -1.0
+                             " >
+                    </Coordinate>
+                    <TextureCoordinate
+                        point="
+                            0.00 0.00
+                            0.25 0.00
+                            0.00 0.33
+                            0.25 0.33
+                            0.50 0.33
+                            0.75 0.33
+                            1.00 0.33
+                            0.00 0.66
+                            0.25 0.66
+                            0.50 0.66
+                            0.75 0.66
+                            1.00 0.66
+                            0.00 1.00
+                            0.25 1.00
+                            " >
+                    </TextureCoordinate>
+
+                </IndexedFaceSet>
+            </Shape>
+        </Scene>
+    </x3d>
+</body>
+</html>

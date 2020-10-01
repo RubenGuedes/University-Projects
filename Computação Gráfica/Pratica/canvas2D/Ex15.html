@@ -1,0 +1,57 @@
+<html>
+<head>
+   <meta charset="utf-8" />
+   <script>
+       function enter(c, x, y ,sx, sy){
+           c.save();
+           c.translate(x,y);
+           c.scale(sx, sy);
+       }
+       function leave(c)
+       {
+           c.restore();
+       }
+       function main()
+       {
+           var cont = document.getElementById("myCanvas").getContext("2d");
+           console.log(1);
+           enter(cont,50, 50, 50, 50);
+           console.log(1);
+           grad(cont);
+           console.log(1);
+           leave(cont);
+           console.log(1);
+           enter(cont,50, 50, 25, 25);
+           console.log(1);
+           grad(cont);
+           console.log(1);
+           leave(cont);
+           console.log(1);
+           
+       }
+       function grad(c)
+       {
+           var g = c.createRadialGradient(0,0,0,0,0,1);
+           g.addColorStop(0, "darkseagreen");
+           g.addColorStop(0.25,"red");
+           g.addColorStop(0.5,"khaki");
+           g.addColorStop(0.75,"purple");
+           g.addColorStop(1.0, "blue");
+           c.fillStyle = g;
+           c.fillRect(0,0, 1, 1);
+       }
+       function repeat(c, t)
+       {
+            var pat = c.createPattern(t,"repeat-x");
+            c.fillStyle = pat;
+            c.fillRect(0,0,200,200);
+       }
+   
+   </script> 
+</head>
+
+<body onload="main();">
+    <canvas id= "myCanvas" width ="500" height="500" />
+</body>
+
+</html>

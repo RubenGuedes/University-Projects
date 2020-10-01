@@ -1,0 +1,10 @@
+addi $t1, $zero, 0
+addi $t0, $zero, 1
+slti $t2, $t0, 11
+beq $t2, $zero, EndFor
+nop
+add $t1, $t1, $t0 # y += x
+addi $t0, $t0, $t1
+j For
+nop
+End:

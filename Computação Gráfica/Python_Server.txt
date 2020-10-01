@@ -1,0 +1,5 @@
+Para abrir um servidor local na linha de comandos tem-se que:
+
+1- abrir o terminal e ir até à pasta pretendida.
+2- escrever "python3 -m http.server 8080"
+3- Depois é só ir ao browser e escrever "localhost:8080"

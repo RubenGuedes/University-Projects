@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Exercicio 20 C2R</title>
+    
+    <script>
+    function main()
+    {
+        var context = document.getElementById("canvas").getContext("2d");
+        context.fillStyle = "grey";
+        context.fillRect(0,0,500,500);
+    
+        ying_yang(context);
+        
+
+    }
+    function ying_yang(ct)
+    {
+        ct.save();
+        ct.translate(250,250);
+        ct.scale(250,250);
+        half_circulo(ct, "white",false);
+        ct.restore();
+
+        ct.save();
+        ct.translate(250,250);
+        ct.scale(250,250);
+        half_circulo(ct, "black",true);
+        ct.restore();
+
+        ct.save();
+        ct.translate(250,125);
+        ct.scale(250/2,250/2);
+        circulo(ct, "white");
+        ct.restore();
+
+        ct.save();
+        ct.translate(250,375);
+        ct.scale(250/2,250/2);
+        circulo(ct, "black");
+        ct.restore();
+
+        ct.save();
+        ct.translate(250,375);
+        ct.scale(250/4,250/4);
+        circulo(ct, "white");
+        ct.restore();
+
+        ct.save();
+        ct.translate(250,125);
+        ct.scale(250/4,250/4);
+        circulo(ct, "black");
+        ct.restore();
+    }
+    function half_circulo(cont, color, anti_clock)
+    {
+        cont.beginPath();
+            cont.arc(0,0, 1, Math.PI/2, 3*Math.PI/2,anti_clock);
+            cont.fillStyle = color;
+            cont.fill();
+        cont.closePath();
+    }
+    function circulo(c, color)
+    {
+        c.beginPath();
+            c.arc(0,0,1,0, 2*Math.PI);
+            c.fillStyle = color;
+            c.fill();
+        c.closePath();
+    }
+    </script>
+
+</head>
+<body onload="main();">
+    <canvas id="canvas" width="500" height="500"/>
+</body>
+</html>

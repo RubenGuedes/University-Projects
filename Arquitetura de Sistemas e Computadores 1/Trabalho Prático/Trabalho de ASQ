@@ -1,0 +1,346 @@
+.data
+
+file1: .asciiz "lena512.rgb"    # Ficheiro da imagem em formato RGB
+file2: .asciiz "lena.gray"       # Ficheiro da imagem em formato GRAY
+file3: .asciiz "lenaSobel_hor.gray"
+file4: .asciiz "lenaSobel_ver.gray"
+file5: .asciiz "lena.jpg"             # Imagem final"
+bufferRGB:   .space 786432                # Espaco para escrever o conteudo da imagem em rgb
+bufferGRAY: .space 262144                # Espaco para escrever o conteudo da imagem em gray
+bufferSobelHori: .space 264196   # Espaço para escrever o produto da matriz horizontal com a matriz imagem
+bufferSobelVert: .space 264196   # Espaço para escrever o produto da matriz vertical com a matriz imagem
+Sobel_hori:  .word 1,2,1,0,0,0,-1,-2,-1          # Matriz para detetar variacoes de tonalidade na horizontal
+Sobel_vert:  .word 1,0,-1,2,0,-2,1,0,-1          # Matriz para detetar variacoes de tonalidade na vertical
+
+.text
+main:
+	
+open_rgb_image:
+	la $a0, file1   
+	li $a1, 0       
+	li $a2, 0       
+	li $v0, 13     
+	syscall
+	move $s6, $v0    
+
+read_rgb_image:             
+	move $a0, $s6         
+	la $a1, bufferRGB     
+	li $a2, 786432          
+	li $v0, 14                 
+	syscall
+	
+close_rgb_image:
+	li $v0, 16    
+	syscall
+# No entanto o conteudo do RGB fica guardado em memoria
+
+# Para a função que converte a imagem em gray
+open_gray_image:
+	la $a0, file2          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+	jal rgb_to_gray  # Chama a função para converter o ficheiro rgb em gray
+	nop
+
+write_gray_image: 
+	move $a0 ,$s6
+	la $a1, file2
+	li $a2, 262144
+	li $v0, 15
+	syscall
+
+close_gray:
+	li $v0, 16 # Fecha
+	move $a0, $s6
+	syscall
+	
+# Para a função convolution
+open_convolution_image:
+	la $a0, file2          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+	jal convolution  # Chama a função para colocar contornos na imagem usando os operadores Sobel
+	nop
+
+write_convolution_image: 
+	move $a0 ,$s6
+	la $a1, file2
+	li $a2, 262144
+	li $v0, 15
+	syscall
+
+close_convolution:
+	li $v0, 16 # Fecha
+	move $a0, $s6
+	syscall
+	
+# Para a função contour
+open_contour_image:
+	la $a0, file2          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+	jal contour  # Chama a função para colocar contornos na imagem usando os operadores Sobel
+	nop
+
+write_contour_image: 
+	move $a0 ,$s6
+	la $a1, file2
+	li $a2, 262144
+	li $v0, 15
+	syscall
+
+close_contour:
+	li $v0, 16 # Fecha
+	move $a0, $s6
+	syscall
+	
+# -------------------------------FUNÇÕES----------------------------------#
+
+############################################
+#  rgb_to_gray - converte buffer rgb para buffer gray
+#  a0 - buffer rgb
+#  a1 - buffer gray
+#  a2 - comprimento (pixeis)
+#  retorna nada
+############################################
+rgb_to_gray:
+	la $a0, bufferRGB
+	la $a1, bufferGRAY
+	li $a2, 262143
+	beq $a2, $zero, Fim_rgb_to_gray
+	nop	
+RepeteGray:
+	lbu $t0, 0($a0)  # Para a cor vermelha
+	mul $t0, $t0, 30
+	
+	lbu $t1, 1($a0)  # Para a cor verde
+	mul $t1, $t1, 59
+	
+	lbu $t2, 2($a0)  # Para a cor azul
+	mul $t2, $t2, 11
+	
+	add $t0, $t0, $t1
+	add $t0, $t0, $t2
+	
+	li $t9, 100 
+	divu $t0, $t9
+	
+	sb $t3, 0($a1)  #Guardar pixeis em gray
+	
+	addi $a0, $a0, 3
+	addi $a1, $a1, 1
+	
+	addi $a2, $a2, -1
+	bne $a2, $zero, RepeteGray
+	nop
+	
+Fim_rgb_to_gray:
+	jr $ra
+	nop
+
+##########################################
+# convolution_hor - Vai colocar contornos na imagem
+#  a0 - buffer com a matriz imagem em Gray
+#  a1 - buffer com operador Sobel Horizontal
+# retorna nada
+#########################################
+convolution_hor:
+	la $a0, bufferGRAY
+	la $a1, Sobel_hori
+	la $a2, Sobel_vert
+	
+	addi $sp, $sp, -266244
+	li $t7, 513   #contador 1
+	li $t8, 2052 #contador 2
+	li $t9, 2048 #contador 3
+	
+	# Cria-se apontadores p/ facilitar o produto com as Matrizes
+	lb $t0, 0($sp)       # seleciona o primeiro byte da primeira linha da imagem
+	lb $t1, 2056($sp)  # seleciona o primeiro byte da segunda linha da imagem
+	lb $t2, 4112($sp)  # seleciona o primeiro byte da terceira linha da imagem
+	
+	
+adi_zeros_cima: # coloca 514 zeros na pilha, antes da imagem
+	sb $zero, 0($t0)
+	bne $t0, $t8, adi_zeros_cima
+	addi $t0, $t0, 4
+	
+	
+linha_da_imagem_hor:
+	# Coloca o primeiro byte da segunda linha com zero
+	sw $zero, 0($t1)
+	addi $t1, $t1, 4
+	li $t5, $zero
+preenche_linha_hor:
+	#criar um ciclo para armazenar os bytes da imagem linha por linha 
+	sw $a0, 0($t1)
+	addi $a0, $a0, 1 #desloca 1 byte na linha
+	addi $t1, $t1, 4
+	addi $t5, $t5, 1
+	addi $t1, $t1, 4 # Adiciona um zero no final de cada linha da imagem
+	sw $zero, 0($t1)
+	bne $t5, $t7, preenche_linha_hor
+	nop
+	
+hor_zeros_baixo: # coloca 514 zeros na pilha, depois da imagem
+	sw $zero, 261629($t0) #???????????
+	move $t4, $t0
+	addi $t4, $t4, -261629 #???????????????
+	bne $t4, $t8, adi_zeros_baixo 
+	addi $t0, $t0, 4
+	
+# rependar na label " adi_zeros_..."
+	
+mult_hor:
+	# Registos nao necessarios
+	move $t3, $zero #ocupado
+	move $t4, $zero #ocupado
+	move $t5, $zero #ocupado
+	move $t7, $zero #ocupado
+	move $t8, $zero #pcupado
+	move $t9, $zero #ocupado
+produto_hor:
+	lw $t7, 0($a1) # Colocar a matriz sobel horizontal no registo $t7
+	lw $t8, 0($t0) # Colocar o conteudo da pilha no registo t8
+	mul $t3, $t7, $t8 # Criar uma nova matriz imagem
+	addi $a1, $a1, 1
+	addi $t0, $t0, 4 #ATENCAO ESTOU A TRABALHAR NA PILHA
+	lw $t7, 0($a1) 
+	lw $t8, 0($t0) 	
+	mul $t4, $t7, $t8
+	addi $t0, $t0, 4 
+	lw $t7, 0($a1) 
+	lw $t8, 0($t0) 	
+	mul $t5, $t7, $t8	
+	add $t3, $t3, $t4
+	add $t3, $t3, $t5
+	sw $t3, 0($t9) # Resultado do produto entre a matriz sobel e a matriz imagem guardado no registo t9
+	#deslocamento 
+	addi $a1,$a1,-2
+	addi $t0,$t0,-8
+	#ciclo
+	beq $t9, 264196,produto_hor
+	addi $t9, $t9, 1
+Fim_Convol_hor:
+	addi $sp, $sp, 266244 #Incrementa espaco na pilha
+	jr $ra
+	nop
+	
+##########################################
+# convolution_vert - Vai colocar contornos na imagem
+#  a0 - buffer com a matriz imagem em Gray
+#  a1 - buffer com operador Sobel Vertical
+# retorna nada
+#########################################
+convolution_vert:
+	la $a0, bufferGRAY
+	la $a1, Sobel_hori
+	la $a2, Sobel_vert
+	
+	addi $sp, $sp, -266244
+	li $t7, 513   #contador 1
+	li $t8, 2052 #contador 2
+	li $t9, 2048 #contador 3
+	
+	# Cria-se apontadores p/ facilitar o produto com as Matrizes
+	lb $t0, 0($sp)       # seleciona o primeiro byte da primeira linha da imagem
+	lb $t1, 2056($sp)  # seleciona o primeiro byte da segunda linha da imagem
+	lb $t2, 4112($sp)  # seleciona o primeiro byte da terceira linha da imagem
+	
+	
+vert_zeros_cima: # coloca 514 zeros na pilha, antes da imagem
+	sb $zero, 0($t0)
+	bne $t0, $t8, vert_zeros_cima
+	addi $t0, $t0, 4
+	
+	
+linha_da_imagem_ver:
+	# Coloca o primeiro byte da segunda linha com zero
+	sw $zero, 0($t1)
+	addi $t1, $t1, 4
+	li $t5, $zero
+preenche_linha_ver:
+	#criar um ciclo para armazenar os bytes da imagem linha por linha 
+	sw $a0, 0($t1)
+	addi $a0, $a0, 1 #desloca 1 byte na linha
+	addi $t1, $t1, 4
+	addi $t5, $t5, 1
+	addi $t1, $t1, 4 # Adiciona um zero no final de cada linha da imagem
+	sw $zero, 0($t1)
+	bne $t5, $t7, preenche_linha_ver
+	nop
+	
+vert_zeros_baixo: # coloca 514 zeros na pilha, depois da imagem
+	sw $zero, 261629($t0) #???????????
+	move $t4, $t0
+	addi $t4, $t4, -261629 #???????????????
+	bne $t4, $t8, adi_zeros_baixo 
+	addi $t0, $t0, 4
+	
+# rependar na label " adi_zeros_..."
+	
+mult_ver:
+	# Registos nao necessarios
+	move $t3, $zero #ocupado
+	move $t4, $zero #ocupado
+	move $t5, $zero #ocupado
+	move $t7, $zero #ocupado
+	move $t8, $zero #pcupado
+	move $t9, $zero #ocupado
+produto_ver:
+	lw $t7, 0($a1) # Colocar a matriz sobel horizontal no registo $t7
+	lw $t8, 0($t0) # Colocar o conteudo da pilha no registo t8
+	mul $t3, $t7, $t8 # Criar uma nova matriz imagem
+	addi $a1, $a1, 1
+	addi $t0, $t0, 4 #ATENCAO ESTOU A TRABALHAR NA PILHA
+	lw $t7, 0($a1) 
+	lw $t8, 0($t0) 	
+	mul $t4, $t7, $t8
+	addi $t0, $t0, 4 
+	lw $t7, 0($a1) 
+	lw $t8, 0($t0) 	
+	mul $t5, $t7, $t8	
+	add $t3, $t3, $t4
+	add $t3, $t3, $t5
+	sw $t3, 0($t9) # Resultado do produto entre a matriz sobel e a matriz imagem guardado no registo t9
+	#deslocamento 
+	addi $a1,$a1,-2
+	addi $t0,$t0,-8
+	#ciclo
+	beq $t9, 264196,produto_ver
+	addi $t9, $t9, 1
+Fim_Convol_ver:
+	addi $sp, $sp, 266244 #Incrementa espaco na pilha
+	jr $ra
+	nop
+################################################################
+# contour - Vai juntar as duas imagens obtidas da função anterior 
+#  a0 - buffer com a imagem em que se multiplicou a matriz Sobel Vertical
+#  a1 - buffer com a imagem em que se multiplicou a matriz Sobel Horizontal
+#  a2 - buffer para juntar e guardar o resultado
+# retorna 
+#  v0 - A imagem com contornos
+################################################################
+contour:
+	#carrego os argumentos aqui
+
+Repetecont:
+	#Crio um Ciclo
+
+FimCont:
+	# Fecho a função aqui
+	
+

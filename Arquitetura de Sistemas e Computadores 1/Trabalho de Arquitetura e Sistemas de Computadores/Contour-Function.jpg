@@ -1,0 +1,107 @@
+.data
+
+#file1: .asciiz "lena512.rgb"                 # Ficheiro da imagem em formato RGB
+file2: .asciiz "lena.gray"                    # Ficheiro da imagem em formato GRAY
+#file3: .asciiz "lenaSobel_hor.gray"        # Ficheiro com a matriz sobel horizontal
+#file4: .asciiz "lenaSobel_ver.gray"        # Ficheiro com a matriz sobel vertical
+file5: .asciiz "lena.jpg"                       # Ficheiro com a imagem final em JPG
+
+#bufferRGB:          .word   # Espaco para escrever o conteudo da imagem em rgb
+bufferGRAY:       .word   # Espaco para escrever o conteudo da imagem em gray
+bufferSobelHori:  .word   # Espaco para escrever o produto da matriz horizontal com a matriz imagem
+bufferSobelVert:   .word   # Espaco para escrever o produto da matriz vertical com a matriz imagem
+bufferFinalImage: .word   #Imagem final
+
+#Sobel_hori:  .word 1,2,1,0,0,0,-1,-2,-1   # Matriz para detetar variacoes de tonalidade na horizontal
+#Sobel_vert:  .word 1,0,-1,2,0,-2,1,0,-1   # Matriz para detetar variacoes de tonalidade na vertical
+
+.text
+open_convolution_image:
+	la $a0, file2   
+	li $a1, 0       
+	li $a2, 0       
+	li $v0, 13     
+	syscall
+	move $s6, $v0    
+
+read_convolution_image:             
+	move $a0, $s6         
+	la $a1, bufferGRAY     
+	li $a2, 262144          
+	li $v0, 14                 
+	syscall
+	
+close_convolution_image:
+	li $v0, 16    
+	syscall
+
+contour:
+	la $a0, bufferSobelHori
+	la $a1, bufferSobelVert
+	la $a2, bufferFinalImage
+	
+	jal contour  
+	nop
+
+open_contour_image:
+	la $a0, file5          
+	li $a1, 1               
+	li $a2, 0               
+	li $v0, 13             
+	syscall
+	move $s6, $v0    
+
+write_contour_image: 
+	move $a0 ,$s6
+	la $a1, 1
+	li $a2, 262144 
+	li $v0, 15
+	syscall
+
+close_contour:
+	li $v0, 16
+	syscall
+
+	j end
+	nop
+	
+###########################     FUNCAO     ##########################
+
+######################################################
+# contour - calcula a imagem final combinando as duas imagens filtradas
+#  a0 - buffer com o Sobel Horizontal
+#  a1 - buffer com o Sobel Vertical
+#  a2 - Imagem Final
+# retorna - Imagem final
+###############################################################
+main_contour:
+	li $t9, 4
+	li $t8, 255
+	li $t7, 2
+	li $t0, 0
+
+Ciclo_contour:
+	lbu $t1, 0($a0) #Buffer Sobel Horizontal
+	lbu $t2, 0($a1) #Buffer Sobel Vertical
+	
+	div $t3, $t1, $t9 #divide por 4
+	div $t4, $t2, $t9 #divide por 9
+	
+	or $t5, $t3, $t4
+	
+	div $t6, $t5, $t7 #divide 2
+	
+	sub $s0, $t8, $t6 #subtrai por 255
+	
+	addi $a0, $a0, 1
+	addi $a1, $a1, 1
+	
+	sb $s0, 0($a2) 
+	bne $t0, 262144, Ciclo_contour
+	addi $t0, $t0, 1	
+
+FimCont: 
+	jr $ra
+	nop
+
+end:

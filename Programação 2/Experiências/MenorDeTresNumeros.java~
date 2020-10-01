@@ -1,0 +1,28 @@
+import java.lang.*;
+import java.util.Scanner;
+/*
+ * Vai-se calcular o menor de tres numeros apresentados
+ */
+class MenorDeTresNumeros {
+  public static void main (String[] args){
+    Scanner numero;
+    numero = new Scanner(System.in);
+    System.out.println("Insira o primero valor: ");
+    int x = numero.nextInt();    
+    System.out.println("Insira o segundo valor: ");
+    int y = numero.nextInt();
+    System.out.println("Insira o terceiro valor: ");
+    int z = numero.nextInt();
+    if ((x < y ) && (x<z)){
+      System.out.println(x + " é o menor numero");
+    }
+    else if ((y < x) && (y < z)){
+      System.out.println(y + " é o menor numero");
+    }
+    else if ((z < x) && (z < y)){
+      System.out.println(z + " é o menor numero");
+    }
+  }
+}
+    
+    

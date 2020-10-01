@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Exercicio 1 em three.js</title>
+  <script src = "../../pub/lib/three.js"></script>
+  <script src = "../../pub/lib/TrackballControls.js"></script>
+  <script type = "text/javascript" >
+/**
+ * Setup the rendering context and build a model
+ **/         
+function init(mesh) {  
+  //
+  //  Document
+  //
+  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setClearColor("khaki")
+  renderer.setSize(512,512);
+  document.body.appendChild(renderer.domElement);
+  //
+  //  Scene (World, Model)
+  //
+  scene = new THREE.Scene();
+  //
+  //  Camera (and TrackballControls)
+  //
+  camera = new THREE.PerspectiveCamera(
+    35,       // abertura
+    512/512,  // proporção largura/altura
+    0.1,      // corte perto
+    10000     // corte longe
+    );
+  camera.position.set( -2.5, 0, 20 );
+  camera.lookAt( scene.position );
+  controls = new THREE.TrackballControls(camera);
+  //
+  //  Lights
+  //  
+  var ambient_light = new THREE.AmbientLight(0x7F7F7F);
+  scene.add( ambient_light );
+  //
+  var point_light_1 = new THREE.PointLight(0x3F3F3F);
+  point_light_1.position.set(5, 0, 0);
+  scene.add( point_light_1 );
+  // //
+  var point_light_2 = new THREE.PointLight(0x3F3F3F);
+  point_light_2.position.set(-5, 0, 0);
+  scene.add( point_light_2 );
+  //
+  scene.add( mesh );
+  //
+  //  Return camera, scene, etc
+  //
+  return {
+    camera: camera,
+    scene: scene,
+    renderer: renderer,
+    controls: controls
+  }
+}
+/**
+ * Animate the model
+ */
+function animate(step) {
+  requestAnimationFrame( function() { animate(step); });
+  step.controls.update();
+  step.renderer.render( step.scene, step.camera);
+}
+/**
+ *  Make a model
+ */
+function model() {
+  var cubo = cube();
+  var wireframe =  new THREE.WireframeGeometry(cubo);
+  var linha = new THREE.LineSegments(wireframe);
+  return  linha;
+}
+/**
+ *  Model: Bow geometry
+ */
+function cube() {
+  //
+  //  Coordinates
+  //
+  var coordinates = [  
+    new THREE.Vector3( 1.0, 0.0,  1.0),
+    new THREE.Vector3( 1.0, 0.0, -1.0),
+    new THREE.Vector3(-1.0, 0.0, -1.0),
+    new THREE.Vector3(-1.0, 0.0,  1.0),
+    new THREE.Vector3( 0.0, 2.0,  0.0)
+    ];
+  //
+  //  Faces (triangles!)
+  //
+  var faces = [
+    new THREE.Face3(0, 2, 1), 
+    new THREE.Face3(0, 2, 3), 
+    new THREE.Face3(2, 4, 1), 
+    new THREE.Face3(1, 4, 0), 
+    new THREE.Face3(0, 4, 3), 
+    new THREE.Face3(3, 4, 2)  
+    ];
+  //  Geometry
+  var c_geo = new THREE.Geometry();
+  c_geo.vertices = coordinates;
+  c_geo.faces = faces;
+  return c_geo;
+}
+/**
+ *  Entry function
+ */
+function main() {
+  var step = init(model());
+  animate(step);
+}
+        </script>
+    </head>
+    <body onload = "main();">
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset ="utf-8"/>
+        <title>Exercicio 18</title>
+        <script>
+        function main()
+        {
+            var context = document.getElementById("canvas").getContext("2d");
+            context.fillStyle = "steelblue";
+            context.fillRect(0,0,500,500);
+            
+            context.save();
+                context.translate(250,250);
+                context.scale(100,100);
+                star(context, 70000, 1, 100);
+            context.restore();
+
+        }
+        function star(c, pontas, v_centro, v_ext)
+        {
+            var cA = pontasA(pontas);
+            var cB = pontasB(pontas);
+            c.beginPath();  
+                for(var a = 0; a < pontas; a++)
+                {
+                    c.lineTo( cA[a][0]*v_ext    , cA[a][1]*v_ext );
+                    c.lineTo( cB[a][0]/v_centro , cB[a][1]/v_centro );
+                }
+                c.fillStyle = "red";
+                c.fill();
+            c.closePath();
+        }
+        function pontasA(pontas)
+        {
+            var coordA = [];
+            for(var a = 1; a<= pontas ; a++)
+            {
+                coordA.push([Math.cos( (2*Math.PI/pontas) * a) , 
+                             Math.sin( (2*Math.PI/pontas) * a) ]);
+            }
+            return coordA;
+        }
+        function pontasB(pontas)
+        {
+            var coordB = [];
+            for(var a = 1; a<= pontas ; a++)
+            {
+                coordB.push( [ Math.cos( Math.PI/pontas +(2*Math.PI/pontas * a)) , 
+                               Math.sin( Math.PI/pontas +(2*Math.PI/pontas * a))] );
+            }
+            return coordB;
+        }
+        </script>
+    </head>
+    <body onload="main();">
+        <canvas id= "canvas" width="500" height="500"/>
+    </body>
+
+
+</html>

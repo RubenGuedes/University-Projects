@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gradiente cíclico</title>
+</head>
+
+<body>
+    <svg width="500" height="500"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- conteúdo do documento SVG -->
+    <defs>
+        <RadialGradient id = "grad" x1 = "0" y1 = "0" x2 = "25" y2 = "25"
+         spreadMethod = "reflect" gradientUnits = "userSpaceOnUse">
+         <stop offset = "0" stop-color = "khaki"></stop>
+         <stop offset = "0.25" stop-color = "red"></stop>
+         <stop offset = "0.75" stop-color = "purple"></stop>
+         <stop offset = "1" stop-color = "blue"></stop>
+        </RadialGradient>
+    </defs>
+    <g>
+        <rect x ="0" y ="0" width="500" height="500" fill="url(#grad)"></rect>
+    </g>
+</svg>
+</body>
+</html>

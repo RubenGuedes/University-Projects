@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset ="utf-8"/>
+        <title>Exercicio 17</title>
+        <script>
+        function main()
+        {
+            var context = document.getElementById("Canvas").getContext("2d");
+            context.fillStyle = "khaki";
+            context.fillRect(0, 0, 500, 500);
+
+            var points = get_points(0.0, 100.0, 20, (x) => 2.0 * x +1 );
+            var xy = convert(points)
+
+            context.save();
+            draw_points(context, xy);
+            context.scale( -1,1 );
+            context.restore();
+            
+            console.log(xy);
+        }
+        function get_points(xmin, xmax, num_points, f)
+        {
+            var arr = new Array(num_points);
+            var points_jump = (xmax - xmin)/ (num_points-1) ;
+
+            for(var a = 0; a < num_points; a++)
+            {
+                arr[a] = f( xmin + a * points_jump ) ;
+            }
+            return {
+                data: arr,
+                xmin: xmin,
+                xmax: xmax,
+            }
+        }
+        function convert(point)
+        {
+            // array com os pontos Y
+            var arr = point.data;
+            // comprimento do array
+            var len_arr = arr.length;
+            // valor para calcular os Xs
+            var soma_x = (point.xmax - point.xmin) / (len_arr-1);
+            // array para guardar o X e o Y
+            var arr_xy = new Array(len_arr);
+
+            for(var i = 0; i < len_arr; i++)
+            {
+                arr_xy[i] = 
+                {
+                    x: point.xmin + (i*soma_x) ,
+                    y: arr[i] 
+                }
+            }
+            return arr_xy;
+        }
+        function draw_points(c, a)
+        {
+            c.beginPath();
+                c.moveTo( a[0].x , a[0].y );
+
+                for (var t = 1; t < a.length; t++)
+                {
+                    c.lineTo( a[t].x , a[t].y);
+                }
+            
+            c.closePath();
+            c.stroke();
+        }
+        </script>
+
+    </head>
+    <body onload="main();">
+        <canvas id="Canvas" width="500" height="500"/>
+    </body>
+</html>

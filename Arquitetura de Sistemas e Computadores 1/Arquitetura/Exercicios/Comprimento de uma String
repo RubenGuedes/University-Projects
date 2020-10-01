@@ -1,0 +1,28 @@
+	.data 
+STR:	.asciiz "Hello" 
+	
+	.text
+
+main:
+	addi $sp, $sp, -4 # Cria espaço na pilha para o registo $ra
+	sw $ra, 0($sp) # Guardar o registo do $ra na pilha
+	
+	la $a0, STR
+	jal strlen # salta para a função strlen
+	nop
+	
+	lw $ra, 0($sp) # Carrega o registo $ra
+	addi $sp, $sp, 4 # Incremento 4 bytes na pilha 
+	jr $ra
+	nop
+	
+contador:
+	addi $v0, $zero, -1
+strlen:
+	lb $t0, 0($a0)
+	addi $v0, $v0, 1
+	bne $t0, $zero, strlen
+	addi $a0, $a0, 1
+	
+	jr $ra
+	nop

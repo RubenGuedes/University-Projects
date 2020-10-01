@@ -1,0 +1,37 @@
+import java.lang.*;
+import java.util.Scanner;
+/*
+ * Indica a qual número pertence a potência de 10 
+ */
+class PotenciasDe10 {
+  public static void main (String[] args){
+    Scanner numero;
+    numero = new Scanner(System.in);
+    System.out.println(" Insira uma destas potencias de 10 ");
+    System.out.println();
+    System.out.println("Potencias de 10     //     Numero");
+    System.out.println();
+    System.out.println("          9               //     Bilhão");
+    System.out.println("          6               //     Milhão");
+    System.out.println("          9               //     Bilhão");
+    System.out.println("          12             //     Trilhão");
+    System.out.println("          15             //     Quadrillion");
+    System.out.println("          18             //     Quintillion");
+    System.out.println("          21             //     Sextillion");
+    System.out.println("          30             //     Nonillion");
+    System.out.println("          100           //     Googol");
+    
+    System.out.println("Insira o primero valor: ");
+    int x = numero.nextInt();    
+    if (){
+      System.out.println(x + " é o menor numero");
+    }
+    else if (){
+      System.out.println(y + " é o menor numero");
+    }
+    else if ((z < x) && (z < y)){
+      System.out.println(z + " é o menor numero");
+    }
+  }
+}
+    

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio 2 em three.js</title>
+	<script src = "../../pub/lib/three-full.js"></script>
+    <script src = "../../pub/lib/TrackballControls.js"></script>
+    <script type = "text/javascript" >
+/**
+ * Setup the rendering context and build a model
+ **/         
+function init(mesh) {  
+  //
+  //  Document
+  //
+  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setClearColor("khaki")
+  renderer.setSize(512,512);
+  document.body.appendChild(renderer.domElement);
+  //
+  //  Scene (World, Model)
+  //
+  scene = new THREE.Scene();
+  //
+  //  Camera (and TrackballControls)
+  //
+  camera = new THREE.PerspectiveCamera(
+    35,       // abertura
+    512/512,  // proporção largura/altura
+    0.1,      // corte perto
+    10000     // corte longe
+    );
+  camera.position.set( -2.5, 0, 20 );
+  camera.lookAt( scene.position );
+  controls = new THREE.TrackballControls(camera);
+  //
+  //  Lights
+  //  
+  var ambient_light = new THREE.AmbientLight(0x7F7F7F);
+  scene.add( ambient_light );
+  //
+  var point_light_1 = new THREE.PointLight(0x3F3F3F);
+  point_light_1.position.set(5, 0, 0);
+  scene.add( point_light_1 );
+  // //
+  var point_light_2 = new THREE.PointLight(0x3F3F3F);
+  point_light_2.position.set(-5, 0, 0);
+  scene.add( point_light_2 );
+  //
+  scene.add( mesh );
+  //
+  //  Return camera, scene, etc
+  //
+  return {
+    camera: camera,
+    scene: scene,
+    renderer: renderer,
+    controls: controls
+  }
+}
+/**
+ * Animate the model
+ */
+function animate(step) {
+  requestAnimationFrame( function() { animate(step); });
+  step.controls.update();
+  step.renderer.render( step.scene, step.camera);
+}
+/**
+ *  Make a model
+ */
+function model() {
+  //
+  var bow_g = bow_geometry();
+  var bow_m =  new THREE.MeshLambertMaterial({color:"crimson"});
+  bow_m.side = THREE.DoubleSide;
+  var bow = new THREE.Mesh(bow_g, bow_m);
+  var boat = new THREE.Object3D();
+  boat.add(bow);
+  return boat;
+}
+/**
+ *
+ *  Model: Bow geometry
+ *
+ */
+function bow_geometry() {
+  //
+  //  Coordinates
+  //
+  var coordinates = [  
+    new THREE.Vector3( 1.0, 0.0,  1.0),
+    new THREE.Vector3( 1.0, 0.0, -1.0),
+    new THREE.Vector3( 1.0, 0.0, -1.0),
+    new THREE.Vector3(-1.0, 0.0,  1.0),
+    new THREE.Vector3( 1.0, 1.0,  1.0),
+    new THREE.Vector3( 1.0, 1.0, -1.0),
+    new THREE.Vector3( 1.0, 1.0, -1.0),
+    new THREE.Vector3(-1.0, 1.0,  1.0)
+    ];
+  //
+  //  Faces (triangles!)
+  //
+  var faces = [
+    new THREE.Face3(0, 1, 5),
+    new THREE.Face3(0, 5, 4),
+    new THREE.Face3(1, 2, 6),
+    new THREE.Face3(1, 6, 5),
+    new THREE.Face3(2, 3, 7),
+    new THREE.Face3(2, 7, 6),
+    new THREE.Face3(3, 0, 4),
+    new THREE.Face3(3, 4, 7),
+    new THREE.Face3(7, 4, 5),
+    new THREE.Face3(7, 4, 6),
+    new THREE.Face3(0, 1, 2),
+    new THREE.Face3(0, 2 ,3)
+    ];
+  //  Geometry
+  var bow = new THREE.Geometry();
+  bow.vertices = coordinates;
+  bow.faces = faces;
+  bow.computeFaceNormals(); // get the right "outside"
+  bow.computeBoundingSphere(); // to help the rendering system
+  return bow;
+}
+/**
+ *  Entry function
+ */
+function main() {
+  var step = init(model());
+  animate(step);
+}
+        </script>
+    </head>
+    <body onload = "main();">
+</body>
+</html>

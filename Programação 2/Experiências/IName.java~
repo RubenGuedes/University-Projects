@@ -1,0 +1,11 @@
+/*
+ * Programa: Mostrar as iniciais
+ * Ficheiro: IName
+*/
+import javax.swing.*;
+class IName {
+  public static void main ( Sting[] args) {
+    System.out.println("Insira o seu nome: ");
+    Scanner name1;
+    name1 = new Scanner;
+    

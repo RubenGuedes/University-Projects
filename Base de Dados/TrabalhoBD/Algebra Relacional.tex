@@ -1,0 +1,99 @@
+\documentclass[12pt,a4paper]{article}
+\begin{document}
+\title{Trabalho Base de Dados}
+\author{Sarah Luz n 38116 \\ Ruben Peixoto n 37514}
+\date{}
+\maketitle
+\section*{Algebra Relacional}
+\subsection*{Fundamentais}
+%Pergunta 1
+\textit{Pergunta 1}\\
+O nome das pessoas que vivem em Portimao.\\
+\begin{center}
+$\pi$\begin{tiny}
+nome
+\end{tiny}$(\sigma$ \begin{tiny}
+(nome,endereco = "Portimao")
+\end{tiny}$(pessoa))$
+\end{center} 
+%Pergunta 2
+\textit{Pergunta 2}\\
+Encontrar o niv para as pessoas que compraram o carro antes de 2001.\\
+\begin{center}
+$\pi $\begin{tiny}
+niv
+\end{tiny}$ - \pi$ \begin{tiny}
+niv
+\end{tiny}$(\sigma$\begin{tiny}
+(ano $\langle$ 2001)
+\end{tiny}$(carro))$
+\end{center}
+
+\subsection*{Adicionais}
+%Pergunta 3
+\textit{Pergunta 3}\\
+Nome das pessoas que tem um carro Toyota.\\
+\begin{center}
+temp1$\longleftarrow \pi$\begin{tiny}
+niv
+\end{tiny}$(\sigma$ \begin{tiny}
+(niv, modelo = 'Toyota')
+\end{tiny}$(carro))$
+\end{center}
+\begin{center}
+temp2$\longleftarrow$temp1 $\bowtie$ tem
+\end{center}
+\begin{center}
+$\pi$ \begin{tiny}
+nome
+\end{tiny}(temp2 $\bowtie$ pessoa)
+\end{center}
+%Pergunta 4
+\textit{Pergunta 4}\\
+O id condutor das pessoas que vivem em Portimao e que tiveram um acidente cujo o custo seja superior a 300 euros.\\
+\begin{center}
+temp1$\longleftarrow \pi$\begin{tiny}
+id condutor
+\end{tiny}$(\sigma $ \begin{tiny}
+(id condutor, valor danos $\rangle$ 300)
+\end{tiny}(participacao))
+\end{center}
+\begin{center}
+temp2$\longleftarrow \pi$\begin{tiny}
+id condutor
+\end{tiny}$(\sigma $ \begin{tiny}
+(id condutor, endereco = "Portimao")
+\end{tiny}(pessoa))
+\end{center}
+\begin{center}
+temp1 $\bigwedge$ temp2
+\end{center}
+\subsection*{Estendidas}
+\textit{Pergunta 5}\\
+Quantos carros da marca Toyota existem no ano 2017
+\begin{center}
+$\sigma$ \begin{tiny}
+count(niv)
+\end{tiny}$(\sigma$ \begin{tiny}
+(modelo = "Toyota" $\bigwedge$ ano = 2017)
+\end{tiny} (carro))
+\end{center}
+\textit{Pergunta 6}\\
+Acrescentar 50 euros aos valores dos danos a todos os proprietarios que viveram acidentes em Lisboa.
+\begin{center}
+temp1$\longleftarrow \pi$\begin{tiny}
+numero de relatorio
+\end{tiny}$(\delta $ \begin{tiny}
+(local = "Lisboa")
+\end{tiny}$(acidente))$
+\end{center}
+\begin{center}
+$\pi$ \begin{tiny}
+(valor danos + 50)
+\end{tiny}$(\delta$ \begin{tiny}
+numero relatorio.temp1 = numero relatorio.participacao
+\end{tiny}$(temp1,participacao)$
+\end{center}
+\end{document}
+
+

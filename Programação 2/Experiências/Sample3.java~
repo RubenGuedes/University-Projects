@@ -1,0 +1,11 @@
+import java.lang.*;
+import javax.swing.*;
+class Sample3 {
+  public static void main(String[] args) {
+    Scanner raio = new Scanner(System.in);
+    System.out.println("Indique o raio: ");
+    double raio2 = raio.nextDouble();
+    double volume_esf = (4/3)*math.pow(raio2,3)*math.PI;
+    System.out.println("O volume da esfera é " + volume);
+  }
+}

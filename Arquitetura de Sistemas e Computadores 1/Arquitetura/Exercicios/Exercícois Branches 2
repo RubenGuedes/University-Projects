@@ -1,0 +1,9 @@
+slti $t2, $t0, 0
+beq $t2, $zero, else
+nop
+sub $t1, $zero, $t0
+j End
+nop
+Else:
+addi $t1, $t0, 0
+End:

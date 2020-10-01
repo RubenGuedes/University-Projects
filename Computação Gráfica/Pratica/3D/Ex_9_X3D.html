@@ -1,0 +1,237 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercicio 9 em X3D</title>
+        <script type='text/javascript' src='../../pub/lib/x3dom-full.js'></script>
+        <link rel='stylesheet' type='text/css' href='../../pub/lib/x3dom.css' />
+    </head>
+    <body>
+        <x3d width="500px" height="500px">
+        <scene>
+            <background skyColor="0.9375 0.8984 0.5469"></background>
+            <Cylinder
+                id           = 'roda1'
+                bottom       = 'true'  
+                ccw          = 'true' 
+                height       = '1.0' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '2.0' 
+                side         = 'true' 
+                solid        = 'true' 
+                subdivision  = '32' 
+                top          = 'true' 
+                useGeoCache  = 'true'>
+            </Cylinder>
+            
+            <Cylinder
+                id           = 'roda2'
+                bottom       = 'true'  
+                ccw          = 'true' 
+                height       = '1.0' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '2.0' 
+                side         = 'true' 
+                solid        = 'true' 
+                subdivision  = '32' 
+                top          = 'true' 
+                useGeoCache  = 'true'>
+            </Cylinder>
+
+            <Cylinder
+                id           = 'roda3'
+                bottom       = 'true'  
+                ccw          = 'true' 
+                height       = '1.0' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '2.0' 
+                side         = 'true' 
+                solid        = 'true' 
+                subdivision  = '32' 
+                top          = 'true' 
+                useGeoCache  = 'true'>
+            </Cylinder>
+
+            <Cylinder
+                id           = 'roda4'
+                bottom       = 'true'  
+                ccw          = 'true' 
+                height       = '1.0' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '2.0' 
+                side         = 'true' 
+                solid        = 'true' 
+                subdivision  = '32' 
+                top          = 'true' 
+                useGeoCache  = 'true'>
+            </Cylinder>
+
+            <Sphere 
+                id           = 'gancho'
+                ccw          = 'true' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '1000' 
+                solid        = 'true' 
+                subdivision  = '24,24' 
+                useGeoCache  = 'true'>
+            </Sphere>
+
+            <Cylinder
+                id           = 'braco'
+                bottom       = 'true'  
+                ccw          = 'true' 
+                height       = '1.0' 
+                lit          = 'true' 
+                metadata     = 'X3DMetadataObject' 
+                radius       = '2.0' 
+                side         = 'true' 
+                solid        = 'true' 
+                subdivision  = '32' 
+                top          = 'true' 
+                useGeoCache  = 'true'>
+            </Cylinder>
+
+            <Box 
+                id              = 'base'
+                ccw             = 'true' 
+                hasHelperColors = 'false' 
+                lit             = 'true' 
+                metadata        = 'X3DMetadataObject' 
+                size            = '6,4,2' 
+                solid           = 'true' 
+                useGeoCache     = 'true'>
+            </Box>
+
+            <transform id = "grua">
+                <transform id = "_base_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                    <shape>
+                        <x3dgeometrynode use = "base"></x3dgeometrynode>
+                    </shape>
+                </transform>
+                <transform id = "_roda1_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                    <shape>
+                        <x3dgeometrynode use = "roda1"></x3dgeometrynode>
+                    </shape>
+                </transform>
+                <transform id = "_roda2_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                        <shape>
+                            <x3dgeometrynode use = "roda2"></x3dgeometrynode>
+                        </shape>
+                </transform>
+                <transform id = "_roda3_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                        <x3dgeometrynode use = "roda3"></x3dgeometrynode>
+                </transform>
+                <transform id = "_roda4_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                        <shape>
+                            <x3dgeometrynode use = "roda4"></x3dgeometrynode>
+                        </shape>
+                </transform>
+                <transform id = "_pilar_" 
+                           bboxCenter='0,0,0' 
+                           bboxSize='-1,-1,-1' 
+                           center='0,0,0' 
+                           children='X3DChildNode' 
+                           metadata='X3DMetadataObject' 
+                           render='true' 
+                           rotation='0,0,1,0' 
+                           scale='1,1,1' 
+                           scaleOrientation='0,0,1,0' 
+                           translation='0,0,0'>
+                        <shape>
+                            <x3dgeometrynode use = "pilar"></x3dgeometrynode>
+                        </shape>
+
+                        <transform id = "_braço_" 
+                                   bboxCenter='0,0,0' 
+                                   bboxSize='-1,-1,-1' 
+                                   center='0,0,0' 
+                                   children='X3DChildNode' 
+                                   metadata='X3DMetadataObject' 
+                                   render='true' 
+                                   rotation='0,0,1,0' 
+                                   scale='1,1,1' 
+                                   scaleOrientation='0,0,1,0' 
+                                   translation='0,0,0'>
+                                <shape>
+                                    <x3dgeometrynode use = "braco"></x3dgeometrynode>
+                                </shape>
+
+                                <transform id = "_gancho_" 
+                                           bboxCenter='0,0,0' 
+                                           bboxSize='-1,-1,-1' 
+                                           center='0,0,0' 
+                                           children='X3DChildNode' 
+                                           metadata='X3DMetadataObject' 
+                                           render='true' 
+                                           rotation='0,0,1,0' 
+                                           scale='1,1,1' 
+                                           scaleOrientation='0,0,1,0' 
+                                           translation='0,0,0'>
+                                        <shape>
+                                            <x3dgeometrynode use = "gancho"></x3dgeometrynode>
+                                        </shape>
+                                </transform>
+                        </transform>
+                </transform>
+            </transform>
+
+            </shape> 
+            
+        </scene>
+    </x3d>
+    </body>
+</html>

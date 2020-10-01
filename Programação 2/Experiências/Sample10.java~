@@ -1,0 +1,10 @@
+import galapagos;
+import javax.swing.*;
+class Sample10{
+  public static void main(String[] args){
+    JFrame window = new JFrame;
+    window.setSize(1000, 1000);
+    window.setTitle(" Tartaruga ");
+    window.setVisible(true);
+  }
+}

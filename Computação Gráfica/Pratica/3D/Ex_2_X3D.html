@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Exercicio 2 em X3D</title>
+    <script type="text/javascript" src="../../pub/lib/x3dom-full.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../pub/lib/x3dom.css" />
+</head>
+<body>
+    <x3d width="500px" height="500px">
+        <scene>
+            <background skyColor = "0.9 0.9 .5" ></background>
+
+            <IndexedLineSet 
+                id = "icosaedro"
+                coordIndex = "[
+                    0 2 3 0 -1
+                    1 2 6 1 -1
+                    0 1 6 2 -1
+                    ]">
+                <coordinate point ="[
+                     0.0  1.618033989   1.0
+                     1.0  0.0   1.618033989
+                    -1.0  0.0   1.618033989
+                    -1.618033989   1.0  0.0
+                     0.0  1.618033989  -1.0
+                     1.618033989  1.0   0.0
+                     0.0  -1.618033989  1.0
+                    -1.618033989 -1.0   0.0
+                    -1.0  0.0  -1.618033989
+                     1.0  0.0  -1.618033989
+                     1.618033989 -1.0   0.0    
+                     0.0  -1.618033989 -1.0
+                    ]" >
+                </coordinate>
+            </IndexedLineSet>
+            
+            <transform id = "ico">
+                <shape>
+                    <x3dgeometrynode use = "icosaedro"></x3dgeometrynode>
+                </shape>
+            </transform>
+
+        </scene>
+    </x3d>
+</body>
+</html>

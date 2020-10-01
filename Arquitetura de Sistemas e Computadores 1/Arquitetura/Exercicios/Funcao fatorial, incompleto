@@ -1,0 +1,23 @@
+#Função Fatorial
+
+.data 
+num: .word 5
+
+.text
+fatorial:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	
+	li $t0, 1
+	ble num, t0, end
+	nop
+	
+	addi $t1, $t1, -1
+	
+	
+	
+	
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
+	
+end:
