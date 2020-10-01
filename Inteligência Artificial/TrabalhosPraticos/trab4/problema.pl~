@@ -1,0 +1,76 @@
+/**
+ * Create row
+ */
+create_row(Row, Col) :- create_row(Row, [], Col).
+
+create_row(0, Row, Row) :- !.
+create_row(Row, Empt, Res) :-
+    R1 is Row - 1,
+    append([e], Empt, NEmpt),
+    create_row(R1, NEmpt, Res).
+
+/**
+ * Create map
+ */
+create_map(N, Map) :- create_map(N, N, [], Map).
+
+create_map(_, 0, Map, Map) :- !.
+create_map(N, Var, Empt, Res) :-
+    V1 is Var - 1,
+    create_row(N, Row),
+    append([Row], Empt, NEmpt),
+    create_map(N, V1, NEmpt, Res).
+
+/**
+ * Replace row
+ * replace_row(List, Index, Elem, NList).
+ */
+replace_row(List, Ind, Elem, Result) :-
+    replace_row(List, Ind, Elem, [], Result).
+
+replace_row([], 0, _, Res, Res).
+replace_row([_|Tail], 0, Elem, Res, Result) :-
+    append([Elem], Tail, NL),
+    append(Res, NL, Result), !.
+replace_row([Head|Tail], Ind, Elem, Res, Result) :-
+    I1 is Ind - 1,
+    append([Head], Res, NRes),
+    replace_row(Tail, I1, Elem, NRes, Result).
+
+/**
+ * Replace element in map
+ */
+replace_map(Map, Row, Col, Elem, Result) :-
+    replace_map(Map, Row, Col, Elem, [], Result).
+
+replace_map([Head|Tail], 0, Col, Elem, Res, Result) :-
+    replace_row(Head, Col, Elem, NRow),
+    append([NRow], Tail, NHead),
+    append([NHead], Res, Result), !.
+replace_map([Head|Tail], Ind, Col, Elem, Res, Result) :-
+    I1 is Ind - 1,
+    append([Head], Res, NRes),
+    replace_map(Tail, I1, Col, Elem, NRes, Result).
+
+/**
+ * Inserir na coluna x, a rainha na posição y ESPECÍFICO
+ */
+insert_queen(Board, Row, Col, NBoard) :-
+    replace_map(Board, Row, Col, q, NBoard).
+
+/**
+ * Predicado para inserir rainhas em todas as colunas do tabuleiro
+ */
+insert_queens_board(Board, _, -1, Board) :- !.
+insert_queens_board(Board, MAXN, N, NBoard) :-
+    RandRow is random(MAXN),
+    N1 is N - 1,
+    insert_queen(Board, RandRow, N1, AuxBoard),
+    insert_queens_board(AuxBoard, MAXN, N1, NBoard).
+
+/**
+ * Criar tabuleiro
+ */
+build_board(NN, Board) :-
+    create_map(NN, Map),
+    insert_queens_board(Map, NN, NN, Board).
